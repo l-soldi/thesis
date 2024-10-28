@@ -1,0 +1,14 @@
+.side-right {
+    margin-top: var(--spacing-md);
+    @media screen and (min-width: 768px) {
+        margin-top: 0;
+    }
+}
+
+.side {
+
+    h3 {
+        align-self: center;
+        margin-bottom: var(--spacing-sm);
+    }
+}

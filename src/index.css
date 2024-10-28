@@ -1,0 +1,119 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+
+  --border-radius: 6px;
+  --border-radius-sm: 4px;
+
+  /* colori */
+  --white: #FFFFFF;
+  --burgundy: #7c2c3a;
+  --brown: #342f2e;
+  --teal: #146461;
+  --gray: #BDBDBD;
+  --dark-gray: #4F4F4F;
+
+  --primary-text-color: var(--teal);
+  --primary-bg: var(--white);
+
+  --secondary-text-color: var(--white);
+  --secondary-bg: var(--teal);
+
+  --description-color: var(--brown);
+
+  /* button */
+  --button-primary-color: var(--white);
+  --button-primary-bg: var(--teal);
+
+  --button-secondary-color: var(--teal);
+  --button-secondary-bg: var(--white);
+
+  --button-cancel-color: var(--burgundy);
+  --button-cancel-bg: var(--white);
+
+  --button-disabled-color: var(--brown);
+  --button-disabled-bg: var(--gray);
+
+  --button-border: 2px solid var(--teal);
+  --button-cancel-border: 2px solid var(--burgundy);
+  --button-disabled-border: 2px solid var(--gray);
+
+  /* input */
+  --input-color: var(--brown);
+  --input-focus: var(--teal);
+  --input-border: var(--teal);
+  --input-error-color: #C1121F;
+  --input-error-border: #BA181B;
+  --input-suggestion-color: var(--dark-gray);
+
+  /* card */
+  --card-color: var(--brown);
+  --card-color-accent: var(--burgundy);
+  --card-bg: var(--white);
+  --card-border: 2px solid var(--burgundy);
+  --card-shadow: 0 2px 4px rgba(var(--burgundy), 0.1);
+  --card-shadow-hover: 0 4px 8px rgba(var(--burgundy), 0.2);
+  --img-card-radius: var(--border-radius-sm);
+
+  /* toast */
+  --toast-text-color: var(--white);
+  --toast-success-bg: #4f772d;
+  --toast-success-border: #245501;
+  --toast-error-bg: #C1121F;
+  --toast-error-border: #BA181B;
+
+  /* scrollbar */
+  --scrollbar-width: 10px;
+  --scrollbar-track: inset 0 0 5px grey;
+
+  /* spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: .5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.25rem;
+
+  color: var(--primary-text-color);
+  background-color: var(--white);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+/* previene scroll orizzontale*/
+html, body {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  margin-bottom: var(--spacing-sm);
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}

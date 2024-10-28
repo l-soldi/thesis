@@ -1,0 +1,29 @@
+.toast {
+    padding: 16px;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    margin: 10px 0;
+    color: var(--toast-text-color);
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    z-index: 9999;
+    transition: all .3s ease;
+}
+
+.toast-non-visible {
+    opacity: 0;
+    visibility: hidden;
+    right: -100%;
+    transition: all 2s ease;
+}
+
+.toast-success {
+    background-color: var(--toast-success-bg);
+    border: 1px solid var(--toast-success-border);
+}
+
+.toast-error {
+    background-color: var(--toast-error-bg);
+    border: 1px solid var(--toast-error-border);
+}

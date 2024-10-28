@@ -1,0 +1,27 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@api/*": ["api/*"],
+      "@components/*": ["components/*"],
+      "@localStorage/*": ["localStorage/*"],
+      "@pages/*": ["pages/*"],
+      "@state/*": ["state/*"],
+      "@utils/*": ["utils/*"],
+      "src/*": ["src/*"]
+   }
+  },
+    "exclude": [
+      "./src/**/__tests__/**",
+      "./src/__mocks__/**"
+    ]
+}

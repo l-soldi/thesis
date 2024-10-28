@@ -1,0 +1,5 @@
+span {
+    label {
+        margin-right: var(--spacing-sm)
+    }
+}
