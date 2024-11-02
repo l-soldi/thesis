@@ -1,8 +1,9 @@
-import React from 'react'
+import { useParams } from "react-router-dom"
 
 const DettaglioPrenotazione = () => {
+  const {id} = useParams()
   return (
-    <div>DettaglioPrenotazione</div>
+    <div>DettaglioPrenotazione {id}</div>
   )
 }
 

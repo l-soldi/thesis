@@ -27,10 +27,21 @@ function App() {
     {
       path: "/gestisci",
       element: <Gestisci />,
+      /* TODO: scommentare quando sarà pronto il BE
+      idea: usare un loader per caricare i dati dal BE
+        loader: async () => {
+        return fakeDb.from("teams").select("*");
+        },
+      oppure
+         loader: async ({ params }) => {
+          return fetch(`/api/teams/${params.teamId}.json`);
+        },
+      vedi: https://reactrouter.com/en/main/route/loader#loader
+    */
       errorElement: <ErrorPage />,
       children: [
         {
-          path: ":idPrenotazione",
+          path: ":id",
           element: <DettaglioPrenotazione />,
         },
       ],

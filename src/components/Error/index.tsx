@@ -9,10 +9,10 @@ const ErrorPage: React.FC = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <div style={{ textAlign: 'center', marginTop: '5rem' }}>
             <h1>404 - Pagina Non Trovata</h1>
             <p>Spiacenti, la pagina che stai cercando non esiste.</p>
-            <button onClick={handleGoBack}>Torna Indietro</button>
+            <button onClick={handleGoBack}>Torna alla Home</button>
         </div>
     );
 };
