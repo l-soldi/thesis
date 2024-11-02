@@ -1,14 +1,44 @@
 import './App.css'
-import Navbar from './components/Navbar'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Navbar from './design-system/Navbar'
+import Prenota from './components/Prenota';
+import Gestisci from './components/Gestisci';
+import ErrorPage from './components/Error';
+import DettaglioPrenotazione from './components/DettaglioPrenotazione';
 
 function App() {
   // TODO: Create context and state for the app
-  // TODO: Create routes for the app
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Prenota />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/prenota",
+      element: <Prenota />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/gestisci",
+      element: <Gestisci />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "gestisci/:idPrenotazione",
+          element: <DettaglioPrenotazione />,
+        },
+      ],
+    },
+  ]);
 
   return (
     <>
       <Navbar />
-      TODO: Add your components here
+       <RouterProvider router={router} />
     </>
   )
 }
