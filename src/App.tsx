@@ -8,6 +8,7 @@ import Prenota from './components/Prenota';
 import Gestisci from './components/Gestisci';
 import ErrorPage from './components/Error';
 import DettaglioPrenotazione from './components/DettaglioPrenotazione';
+import { ReservationProvider } from './state/Reservation';
 
 function App() {
   // TODO: Create context and state for the app
@@ -37,10 +38,10 @@ function App() {
   ]);
 
   return (
-    <>
+    <ReservationProvider>
       <Navbar />
        <RouterProvider router={router} />
-    </>
+    </ReservationProvider>
   )
 }
 
