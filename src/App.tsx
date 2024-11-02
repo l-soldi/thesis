@@ -11,6 +11,7 @@ import DettaglioPrenotazione from './components/DettaglioPrenotazione';
 
 function App() {
   // TODO: Create context and state for the app
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -28,7 +29,7 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "gestisci/:idPrenotazione",
+          path: ":idPrenotazione",
           element: <DettaglioPrenotazione />,
         },
       ],
