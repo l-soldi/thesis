@@ -11,7 +11,6 @@ import DettaglioPrenotazione from './components/DettaglioPrenotazione';
 import { ReservationProvider } from './state/Reservation';
 
 function App() {
-  // TODO: Create context and state for the app
 
   const router = createBrowserRouter([
     {
@@ -51,7 +50,9 @@ function App() {
   return (
     <ReservationProvider>
       <Navbar />
+      <main>
        <RouterProvider router={router} />
+      </main>
     </ReservationProvider>
   )
 }

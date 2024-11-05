@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.side {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 5rem;
+}
+.side.data-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 5rem;
+    }

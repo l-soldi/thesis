@@ -17,14 +17,15 @@ TODO: scrivere riguardo yarn install & co
 
 ### Scaletta
 
-- [x] Day 1: Setup
-- [x] Day 2: Scheletro componenti
-- [x] Day 3: Scheletro routing + stato
-- [ ] Day 4: Pagina prenota + sistemazione componenti
-- [ ] Day 5: Pagina gestisci + sistemazione componenti
-- [ ] Day 6: Pagina dettaglio + sistemazione componenti (?)
-- [ ] Day 7: Fine sistemazione dettagli FE, testing
-- [ ] Day 8: Setup BE
-- [ ] Day 9: Scrittura API
-- [ ] Day 10: Test API
-- [ ] Day 11: Test applicativo
+- [x] Setup
+- [x] Scheletro componenti
+- [x] Scheletro routing + stato
+- [x] Pagina prenota
+- [ ] Pagina gestisci
+- [ ] Pagina dettaglio
+- [ ] Sistemazione componenti, mobile
+- [ ] Fine sistemazione dettagli FE, testing
+- [ ] Setup BE
+- [ ] Scrittura API
+- [ ] Test API
+- [ ] Test applicativo

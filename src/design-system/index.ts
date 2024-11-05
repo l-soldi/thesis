@@ -1,6 +1,5 @@
-export * as Navbar from './Navbar';
-export * as Calendar from './Calendar';
-export * as Input from './Input';
-export * as CheckInput from './CheckInput';
-export * as DateInput from './DateInput';
-export * as CardCarousel from './CardCarousel';
+export {default as Navbar} from './Navbar';
+export {default as Input} from './Input';
+export {default as CheckInput} from './CheckInput';
+export {default as DateInput} from './DateInput';
+export {default as CardCarousel} from './CardCarousel';
