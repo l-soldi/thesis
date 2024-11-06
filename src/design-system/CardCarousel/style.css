@@ -1,0 +1,31 @@
+.card-carousel {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    gap: var(--spacing-md);
+    padding: 2px 16px;
+}
+
+.card-carousel::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.card-carousel::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.card-carousel::-webkit-scrollbar-thumb {
+  background: var(--teal); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.card-carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--teal); 
+}
+

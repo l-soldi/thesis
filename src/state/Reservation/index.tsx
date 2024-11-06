@@ -1,15 +1,15 @@
-import { createContext, ReactNode, useMemo, useState } from 'react';
+import { createContext, Dispatch, ReactNode, useReducer } from 'react';
+import { Actions } from './enums';
 
 interface Reservation {
     id: string;
     name: string;
     lastName: string;
-    dateFrom: string;
-    dateTo: string;
-    roomId: string;
-    adults: number;
-    children: number;
+    date: string;
+    expId: string;
+    peopleNum: number;
   }
+
 const initialReservation: Reservation | null = null;
 
 interface ReservationContextProps {
@@ -18,21 +18,37 @@ interface ReservationContextProps {
 }
 
 const ReservationContext = createContext<ReservationContextProps | null>(null);
+const ReservationDispatchContext = createContext<Dispatch<any> | null>(null);
 
+const reservationReducer = (reservation, action) => {
+  switch (action.type) {
+    case Actions.UPDATE_DATE: 
+      return {...reservation, date: action.payload}
+    case Actions.UPDATE_PEOPLE:
+      return {...reservation, peopleNum: action.payload}
+    case Actions.UPDATE_NAME:
+      return {...reservation, name: action.payload}
+    case Actions.UPDATE_LASTNAME:
+      return {...reservation, lastName: action.payload}
+    case Actions.UPDATE_EXP_ID:
+      return {...reservation, expId: action.payload}
+    case Actions.RESET:
+      return initialReservation
+    default:
+      return reservation
+  }
+}
 
 const ReservationProvider = ({children} : {children: ReactNode}) => {
-    const [reservation, setReservation] = useState<Reservation | null>(initialReservation);
-
-    const value = useMemo(() => ({
-        reservation,
-        setReservation
-    }), [reservation, setReservation]);
+    const [reservation, dispatch] = useReducer(reservationReducer, initialReservation);
 
     return (
-      <ReservationContext.Provider value={value}>
+      <ReservationContext.Provider value={reservation}>
+        <ReservationDispatchContext.Provider value={dispatch}>
         {children}
+        </ReservationDispatchContext.Provider>
       </ReservationContext.Provider>
     );
 };
 
-export { ReservationContext, ReservationProvider };
+export { ReservationContext, ReservationDispatchContext, ReservationProvider };

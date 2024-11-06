@@ -11,7 +11,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                MockHotel
+                MockExperiences
             </div>
             <button className="navbar-toggle" onClick={onToggleMenu}>
                 <span className="navbar-toggle-icon">

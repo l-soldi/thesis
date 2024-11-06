@@ -3,7 +3,6 @@ import React, { useId } from 'react';
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     type: 'text' | 'number' | 'date';
     label: string;
-    ref: React.RefObject<HTMLInputElement>;
 }
 
 const Input: React.FC<InputProps> = ({ type, ...props }) => {

@@ -1,25 +1,23 @@
-import React, { useRef, useState } from 'react'
-import { DateInput, Input } from '../../../design-system'
+import { useContext } from 'react'
+import { Input } from '../../../design-system'
+import { ReservationDispatchContext } from '../../../state/Reservation'
+import { Actions } from '../../../state/Reservation/enums'
+import { formatDate } from '../utils'
 
 const DataSelection = () => {
-  const today = new Date().toString()
-  const [date, setDate] = useState(today)
-  const numOfPeolple= useRef(null)
+  const today = formatDate(new Date())
 
-  const handlechange = (value: string) => {
-    console.log(value)
-    setDate(value)
-  }
+  const dispatch = useContext(ReservationDispatchContext)
 
-  const handleChangePeople = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
-    numOfPeolple.current = e.target.value
+  const handleChange = (value: string | number, action: Actions) => {
+    if(dispatch) dispatch({ type: action, payload: value })
   }
 
   return (
     <section className='side data-selection'>
-      <DateInput label='Giorno' value={date.toString()} onChange={handlechange}/>
-      <Input type='number' label='Numero di persone' ref={numOfPeolple} onChange={handleChangePeople}  max={6}/>
+      <Input type='date' label='Giorno' onChange={(e) => handleChange(e.target.value, Actions.UPDATE_DATE)} min={today}/>
+      <Input type='number' label='Numero di persone' onChange={(e) => handleChange(parseInt(e.target.value), Actions.UPDATE_PEOPLE)}  max={6}/>
+      {/* TODO: idea: filtro del prezzo */}
     </section>
   )
 }

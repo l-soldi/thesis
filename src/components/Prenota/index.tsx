@@ -1,14 +1,13 @@
-import React from 'react'
 import './style.css'
 import DataSelection from './components/DataSelection'
-import RoomsList from './components/RoomsList'
+import ExperiencesList from './components/ExperiencesList'
 import ReserverData from './components/ReserverData'
 
 const Prenota = () => {
   return (<>
     <div className='container'>
       <DataSelection />
-      <RoomsList />
+      <ExperiencesList />
     </div>
     <ReserverData />
   </>
