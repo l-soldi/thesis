@@ -3,18 +3,60 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: start;
+
+    &.with-form {
+        display: flex;
+        background-color: var(--white);
+        border: 2px solid var(--light);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 }
+
 .side {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 2rem 5rem;
-}
 
-.side.data-selection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 2rem 5rem;
+    &.data-selection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 2rem 5rem;
+    }
+
+    &.form {
+        background-color: var(--light);
+        color: var(--deep-brown);
+        flex-basis: 50%;
+        margin: 0;
+        padding: 2rem 5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+
+        > button {
+            align-self: end;
+        }
+    }
+
+    &.no-edit {
+        color: var(--deep-brown);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    h3 {
+        align-self: center;
+        margin-bottom: var(--spacing-sm);
+    }
 }

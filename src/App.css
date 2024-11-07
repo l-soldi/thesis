@@ -3,3 +3,23 @@ main {
   margin: 0 auto;
   padding: var(--spacing-md);
 }
+
+button {
+  background-color: var(--teal);
+  color: var(--white);
+  border: 2px solid var(--brown);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-weight: 550;
+
+  &:disabled {
+      color: var(--teal);
+      background-color: var(--white);
+      cursor: auto;
+  }
+}

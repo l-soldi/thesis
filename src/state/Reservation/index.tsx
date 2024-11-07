@@ -5,31 +5,40 @@ interface Reservation {
     id: string;
     name: string;
     lastName: string;
+    email: string;
+    phone: string;
     date: string;
-    expId: string;
+    expId: number;
     peopleNum: number;
   }
 
-const initialReservation: Reservation | null = null;
+const initialReservation: Reservation = {
+  id: '',
+  name: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  date: '',
+  expId: 0,
+  peopleNum: 1
+};
 
-interface ReservationContextProps {
-    reservation: Reservation | null;
-    setReservation: (reservation: Reservation | null) => void;
-}
-
-const ReservationContext = createContext<ReservationContextProps | null>(null);
+const ReservationContext = createContext<Reservation | null>(null);
 const ReservationDispatchContext = createContext<Dispatch<any> | null>(null);
 
-const reservationReducer = (reservation, action) => {
+const reservationReducer = (reservation: Reservation | null, action: {type: Actions, payload: Partial<Reservation>}) => {
   switch (action.type) {
-    case Actions.UPDATE_DATE: 
+    case Actions.UPDATE_DATE:
       return {...reservation, date: action.payload}
     case Actions.UPDATE_PEOPLE:
       return {...reservation, peopleNum: action.payload}
-    case Actions.UPDATE_NAME:
-      return {...reservation, name: action.payload}
-    case Actions.UPDATE_LASTNAME:
-      return {...reservation, lastName: action.payload}
+    case Actions.UPDATE_USER:
+      return {...reservation,
+        name: action.payload?.name ?? '',
+        lastName: action.payload?.lastName ?? '',
+        email: action.payload?.email ?? '',
+        phone: action.payload?.phone ?? ''
+      }
     case Actions.UPDATE_EXP_ID:
       return {...reservation, expId: action.payload}
     case Actions.RESET:

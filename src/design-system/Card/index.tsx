@@ -7,9 +7,10 @@ interface CardProps {
     imageUrl: string;
     price: number;
     handleClick: (e: MouseEvent<HTMLButtonElement>) => void;
+    isChosen: boolean
 }
 
-const Card = ({ title, description, imageUrl, price, handleClick } : CardProps) => {
+const Card = ({ title, description, imageUrl, price, handleClick, isChosen } : CardProps) => {
     return (
         <div className="card">
             <img src={imageUrl} alt={title} className="card-image" />
@@ -18,7 +19,9 @@ const Card = ({ title, description, imageUrl, price, handleClick } : CardProps) 
                 <p className="card-description">{description}</p>
                 <div className='card-foot'>
                     <p className="card-price">€ {price.toFixed(2)}</p>
-                    <button className="card-cta" onClick={handleClick}>Scegli</button>
+                    <button onClick={handleClick} disabled={isChosen}>
+                        {isChosen ? 'Selezionato' : 'Scegli'}
+                    </button>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 Repository hosting the full-stack project I'm working on as my Bachelor's Thesis
 
-## Tecnologies used
+## Technologies used
 
 - Mockup: [Figma](https://www.figma.com/design/E2oxlgq3FVQRVGZg5toH1E/Tesi)
 - FE:
@@ -20,12 +20,12 @@ TODO: scrivere riguardo yarn install & co
 - [x] Setup
 - [x] Scheletro componenti
 - [x] Scheletro routing + stato
-- [x] Pagina prenota
-- [ ] Pagina gestisci
-- [ ] Pagina dettaglio
-- [ ] Sistemazione componenti, mobile
-- [ ] Fine sistemazione dettagli FE, testing
+- [x] Pagina Prenota
 - [ ] Setup BE
 - [ ] Scrittura API
+- [ ] Pagina Gestisci
+- [ ] Pagina Dettaglio
+- [ ] Sistemazione componenti, mobile
+- [ ] Fine sistemazione dettagli FE, testing
 - [ ] Test API
 - [ ] Test applicativo

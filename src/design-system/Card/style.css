@@ -49,19 +49,6 @@
     color: var(--brown);
 }
 
-button.card-cta {
-    background-color: var(--teal);
-    color: var(--white);
-    border: 2px solid var(--brown);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    padding: var(--spacing-xs) var(--spacing-sm);
-}
-
 @media (max-width: 768px) {
     .card {
         margin: 0 0 var(--spacing-md);

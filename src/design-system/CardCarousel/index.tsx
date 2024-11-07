@@ -2,7 +2,7 @@ import { experiences as data } from './data';
 import Card from '../Card';
 import './style.css';
 
-const CardCarousel = ({handleClick} : {handleClick: (id: number) => void}) => {
+const CardCarousel = ({handleClick, idChosen} : {handleClick: (id: number) => void, idChosen: number}) => {
     return (
         <div className="card-carousel">
             {data.map(card => (
@@ -13,6 +13,7 @@ const CardCarousel = ({handleClick} : {handleClick: (id: number) => void}) => {
                     price={card.price}
                     imageUrl={card.imageUrl}
                     handleClick={() => handleClick(card.id)}
+                    isChosen={card.id === idChosen}
                 />
             ))}
         </div>
