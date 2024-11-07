@@ -16,6 +16,7 @@ export const useApi = (serviceToCall: (...args) => Promise<any>, navigateTo?:str
         if (onSuccess) onSuccess(resp);
         // Se è necessaria la revalidazione, utile nei casi di modifica ed eliminazione, eseguila
         if(revalidate) revalidator.revalidate();
+        // Se è stato passato un path di reindirizzamento, reindirizza l'utente
         if(navigateTo) {
           navigate(navigateTo, { replace: true })};
       })
@@ -23,5 +24,6 @@ export const useApi = (serviceToCall: (...args) => Promise<any>, navigateTo?:str
       .catch(err => showErrorToast(err.message));
   }
 
+  // Ritorna la funzione di callback
   return callback;
 }

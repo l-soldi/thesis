@@ -3,8 +3,6 @@ import './style.css'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     type: HTMLInputTypeAttribute;
     label: string;
-    error?: boolean;
-    errorMessage?: string
 }
 
 const suggestions = [
@@ -19,6 +17,7 @@ const suggestions = [
 const Input: React.FC<InputProps> = ({ type, label, ...props }) => {
     const id = useId();
 
+    // Se l'input non è nascosto, mostra il suggerimento corrispondente al tipo di input
     return <div className='input-container'>
         <label htmlFor={id}>{label}</label>
         <input type={type} id={id} {...props} />

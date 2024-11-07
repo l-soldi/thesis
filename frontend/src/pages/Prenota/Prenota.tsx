@@ -1,6 +1,6 @@
-import './style.css'
 import DataSelection from './components/DataSelection'
 import ExperiencesList from './components/ExperiencesList'
+import './style.css'
 
 const Prenota = () => {
   return (

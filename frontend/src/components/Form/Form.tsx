@@ -14,7 +14,9 @@ const Form = ({ onSubmit, defaultValues } : Props) => {
     const today = formatDate(new Date())
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      // Previene il comportamento di default del form
       e.preventDefault();
+      // Crea un oggetto FormData con i dati del form e lo trasforma in un oggetto
       const formData = new FormData(e.currentTarget as HTMLFormElement);
       const values = Object.fromEntries(formData.entries());
       onSubmit({...values});

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Outlet, useLoaderData, useNavigate, useParams } from 'react-router-dom'
-import List from './components/List'
 import { Reservation } from '../../api/types'
+import List from './components/List'
 import './style.css'
 
 const Gestisci = () => {

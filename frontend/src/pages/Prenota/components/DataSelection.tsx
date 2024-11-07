@@ -14,7 +14,6 @@ const DataSelection = () => {
     ctaCreate(vals)
   }
 
-
   return (
     <section className='side data-input'>
       <Form onSubmit={createReservation}/>

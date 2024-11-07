@@ -81,6 +81,7 @@ export const getReservations = async (page = 1, perPage = 5)  : Promise<FullRese
     return response.json()
 }
 
+// API per l'eliminazione di una prenotazione
 export const deleteReservation = async (id: number) => {
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
         method: 'DELETE',
@@ -112,6 +113,7 @@ export const updateReservation = async (id: number, values: Omit<Reservation, "i
     }
 }
 
+// API per la lista esperienze
 export const getExperiences = async () : Promise<Experience[]> => {
     const response = await fetch(`${BASE_URL}/experiences`, {
         method: 'GET',
