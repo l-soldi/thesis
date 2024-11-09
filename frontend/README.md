@@ -21,8 +21,9 @@ TODO: scrivere riguardo yarn install & co
 - [x] Scheletro componenti
 - [x] Scheletro routing + stato
 - [x] Pagina Prenota
-- [ ] Setup BE
-- [ ] Scrittura API
+- [x] Setup BE
+- [x] Scrittura API
+- [x] Creazione componente toast
 - [ ] Pagina Gestisci
 - [ ] Pagina Dettaglio
 - [ ] Sistemazione componenti, mobile

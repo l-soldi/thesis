@@ -1,0 +1,17 @@
+.toast {
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 10px 0;
+    color: var(--toast-text-color);
+}
+
+.toast-success {
+    background-color: var(--toast-success-bg);
+    border: 1px solid var(--toast-success-border);
+}
+
+.toast-error {
+    background-color: var(--toast-error-bg);
+    border: 1px solid var(--toast-error-border);
+}

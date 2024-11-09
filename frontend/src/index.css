@@ -9,6 +9,10 @@
   --brown: #524948;
   --deep-brown: #342f2e;
   --teal: #1D7874;
+  --toast-success-bg: #4f772d;
+  --toast-success-border: #245501;
+  --toast-error-bg: #c1121f;
+  --toast-error-border: #ba181b;
 
   /* spacing */
   --spacing-xs: 0.5rem;
