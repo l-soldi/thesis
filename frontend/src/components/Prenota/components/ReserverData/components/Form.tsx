@@ -1,16 +1,22 @@
-import { useContext } from 'react'
-import { ReservationDispatchContext } from '../../../../state/Reservation'
-import { Input } from '../../../../design-system'
-import { Actions, UserFields } from '../../../../state/Reservation/enums'
+import { useCallback, useContext } from 'react'
+import { ReservationContext, ReservationDispatchContext } from '../../../../../state/Reservation'
+import { Input } from '../../../../../design-system'
+import { Actions, UserFields } from '../../../../../state/Reservation/enums'
+import { createReservations } from '../../../../../api/methods'
 
 const Form = () => {
     const dispatch = useContext(ReservationDispatchContext)
+    const state = useContext(ReservationContext)
+    const createReservation = useCallback((values: any) => {
+        if(dispatch) dispatch({type: Actions.UPDATE_USER, payload: values})
+        createReservations({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum})
+    }, [dispatch, state])
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget as HTMLFormElement);
         const values = Object.fromEntries(formData.entries());
-        if(dispatch) dispatch({type: Actions.UPDATE_USER, payload: values})
+        createReservation(values);
     }
 
     return (

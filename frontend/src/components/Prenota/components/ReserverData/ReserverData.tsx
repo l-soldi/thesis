@@ -1,5 +1,5 @@
-import Form from './Form'
-import ExpRecap from './ExpRecap'
+import Form from './components/Form'
+import ExpRecap from './components/ExpRecap'
 import { useContext } from 'react'
 import { ReservationContext } from '../../../../state/Reservation'
 

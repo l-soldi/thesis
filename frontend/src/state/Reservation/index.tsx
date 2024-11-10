@@ -4,7 +4,7 @@ import { Actions } from './enums';
 interface Reservation {
     id: string;
     name: string;
-    lastName: string;
+    lastname: string;
     email: string;
     phone: string;
     date: string;
@@ -15,7 +15,7 @@ interface Reservation {
 const initialReservation: Reservation = {
   id: '',
   name: '',
-  lastName: '',
+  lastname: '',
   email: '',
   phone: '',
   date: '',
@@ -35,7 +35,7 @@ const reservationReducer = (reservation: Reservation | null, action: {type: Acti
     case Actions.UPDATE_USER:
       return {...reservation,
         name: action.payload?.name ?? '',
-        lastName: action.payload?.lastName ?? '',
+        lastname: action.payload?.lastname ?? '',
         email: action.payload?.email ?? '',
         phone: action.payload?.phone ?? ''
       }
