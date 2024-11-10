@@ -7,6 +7,7 @@ from models import Reservation
 def get_reservations():
   reservations = Reservation.query.all() 
   result = [reservation.to_json() for reservation in reservations]
+  print(result)
   return jsonify(result)
 
 # Create a reservation
@@ -16,30 +17,30 @@ def create_reservation():
     data = request.json
 
     # Validations
-    required_fields = ["name","lastName","email","phone","date","expId","peopleNum"]
+    required_fields = ["name","lastname","email","phone","date","expId","peopleNum"]
     for field in required_fields:
       if field not in data or not data.get(field):
         return jsonify({"error":f'Missing required field: {field}'}), 400
 
     name = data.get("name")
-    lastName = data.get("lastName")
+    lastname = data.get("lastname")
     email = data.get("email")
     phone = data.get("phone")
     date = data.get("date")
-    expId = data.get("expId")
-    peopleNum = data.get("peopleNum")
+    exp_id = data.get("expId")
+    people_num = data.get("peopleNum")
 
-    new_reservation = Reservation(name=name, lastName=lastName, email=email, phone=phone, date=date, expId=expId, peopleNum=peopleNum)
+    new_reservation = Reservation(name=name, lastname=lastname, email=email, phone=phone, date=date, exp_id=exp_id, people_num=people_num)
 
     db.session.add(new_reservation) 
     db.session.commit()
 
     return jsonify(new_reservation.to_json()), 201
-    
+
   except Exception as e:
     db.session.rollback()
     return jsonify({"error":str(e)}), 500
-  
+
 # Delete a reservation
 @app.route("/api/reservations/<int:id>",methods=["DELETE"])
 def delete_reservation(id):
@@ -47,28 +48,32 @@ def delete_reservation(id):
     reservation = Reservation.query.get(id)
     if reservation is None:
       return jsonify({"error":"reservation not found"}), 404
-    
+
     db.session.delete(reservation)
     db.session.commit()
     return jsonify({"msg":"reservation deleted"}), 200
   except Exception as e:
     db.session.rollback()
     return jsonify({"error":str(e)}),500
-  
-# Update a reservation profile
+
+# Update a reservation
 @app.route("/api/reservations/<int:id>",methods=["PATCH"])
 def update_reservation(id):
   try:
     reservation = Reservation.query.get(id)
     if reservation is None:
       return jsonify({"error":"reservation not found"}), 404
-    
+
     data = request.json
 
     reservation.name = data.get("name",reservation.name)
-    reservation.role = data.get("role",reservation.role)
-    reservation.description = data.get("description",reservation.description)
-    reservation.gender = data.get("gender",reservation.gender)
+    reservation.lastname = data.get("lastname",reservation.lastname)
+    reservation.email = data.get("email",reservation.email)
+    reservation.phone = data.get("phone",reservation.phone)
+    reservation.date = data.get("date",reservation.date)
+    reservation.expId = data.get("expId",reservation.expId)
+    reservation.peopleNum = data.get("peopleNum",reservation.peopleNum)
+
 
     db.session.commit()
     return jsonify(reservation.to_json()),200

@@ -7,9 +7,8 @@ class Reservation(db.Model):
   email = db.Column(db.String(50), nullable=False)
   phone = db.Column(db.String(10), nullable=False)
   date = db.Column(db.String(10), nullable=False)
-  expId = db.Column(db.Number(2), nullable=True)
-  peopleNumb = db.Column(db.Number(1), nullable=True)
-
+  exp_id = db.Column(db.Integer, nullable=False)
+  people_num = db.Column(db.Integer, nullable=False)
 
   def to_json(self):
     return {
@@ -19,6 +18,6 @@ class Reservation(db.Model):
       "email":self.email,
       "phone":self.phone,
       "date":self.date,
-      "expId":self.expId,
-      "peopleNumb":self.peopleNumb
+      "expId":self.exp_id,
+      "peopleNum":self.people_num
     }
