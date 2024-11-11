@@ -24,7 +24,7 @@ TODO: scrivere riguardo yarn install & co
 - [x] Setup BE
 - [x] Scrittura API
 - [x] Creazione componente toast
-- [ ] Pagina Gestisci
+- [-] Pagina Gestisci
 - [ ] Pagina Dettaglio
 - [ ] Sistemazione componenti, mobile
 - [ ] Fine sistemazione dettagli FE, testing
