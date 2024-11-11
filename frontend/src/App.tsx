@@ -9,6 +9,7 @@ import Gestisci from './components/Gestisci';
 import ErrorPage from './components/Error';
 import DettaglioPrenotazione from './components/DettaglioPrenotazione';
 import { ReservationProvider } from './state/Reservation';
+import { getExperiences, getReservations } from './api/methods';
 
 function App() {
 
@@ -16,32 +17,34 @@ function App() {
     {
       path: "/",
       element: <Prenota />,
-      errorElement: <ErrorPage />
+      errorElement: <ErrorPage />,
+      loader: async () => {
+        return await getExperiences();
+      },
     },
     {
       path: "/prenota",
       element: <Prenota />,
-      errorElement: <ErrorPage />
+      errorElement: <ErrorPage />,
+      loader: async () => {
+        return await getExperiences();
+      },
     },
     {
       path: "/gestisci",
       element: <Gestisci />,
-      /* TODO: scommentare quando sarà pronto il BE
-      idea: usare un loader per caricare i dati dal BE
-        loader: async () => {
-        return fakeDb.from("teams").select("*");
-        },
-      oppure
-         loader: async ({ params }) => {
-          return fetch(`/api/teams/${params.teamId}.json`);
-        },
-      vedi: https://reactrouter.com/en/main/route/loader#loader
-    */
+      loader: async () => {
+        return await getReservations();
+      },
       errorElement: <ErrorPage />,
       children: [
         {
           path: ":id",
           element: <DettaglioPrenotazione />,
+          loader: async ({ params }) => {
+            const { id } = params;
+            return await getReservations().then(reservations => reservations.find(reservation => reservation.id === Number(id)));
+          },
         },
       ],
     },

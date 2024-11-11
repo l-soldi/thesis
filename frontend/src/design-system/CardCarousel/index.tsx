@@ -1,8 +1,21 @@
-import { experiences as data } from './data';
 import Card from '../Card';
 import './style.css';
 
-const CardCarousel = ({handleClick, idChosen} : {handleClick: (id: number) => void, idChosen: number}) => {
+type Card = {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+}
+
+type Props = {
+    handleClick: (id: number) => void;
+    idChosen: number;
+    data: Card[]
+}
+
+const CardCarousel = ({handleClick, idChosen, data} : Props) => {
     return (
         <div className="card-carousel">
             {data.map(card => (

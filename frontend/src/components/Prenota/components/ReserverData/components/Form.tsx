@@ -3,14 +3,18 @@ import { ReservationContext, ReservationDispatchContext } from '../../../../../s
 import { Input } from '../../../../../design-system'
 import { Actions, UserFields } from '../../../../../state/Reservation/enums'
 import { createReservations } from '../../../../../api/methods'
+import { useNavigate } from 'react-router-dom'
 
 const Form = () => {
     const dispatch = useContext(ReservationDispatchContext)
     const state = useContext(ReservationContext)
-    const createReservation = useCallback((values: any) => {
+    const navigate = useNavigate()
+
+    const createReservation = useCallback(async (values: any) => {
         if(dispatch) dispatch({type: Actions.UPDATE_USER, payload: values})
-        createReservations({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum})
-    }, [dispatch, state])
+        const resId = await createReservations({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum})
+        navigate(`/gestisci/${resId}`)
+    }, [dispatch])
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

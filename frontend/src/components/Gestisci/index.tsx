@@ -1,14 +1,19 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import List from './components/List'
 
 const Gestisci = () => {
-  // TODO: idea: al click su una prenotazione, mostrare Outlet con dettaglio prenotazione
+  const [selected, setSelected] = useState(0)
+  const navigate = useNavigate()
+
+  const handleSelected = (val: number) => {
+    setSelected(val)
+    navigate(`/gestisci/${val}`)
+  }
   return (
     <div>
-      Gestisci
-      <List />
-      <Outlet />
+      <List handleSelected={handleSelected}/>
+      {!!selected && <Outlet />}
     </div>
   )
 }

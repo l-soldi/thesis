@@ -1,5 +1,5 @@
 export type Reservation = {
-    id: string;
+    id: number;
     name: string;
     lastname: string;
     email: string;
@@ -7,4 +7,12 @@ export type Reservation = {
     date: string;
     expId: number;
     peopleNum: number;
+}
+
+export type Experience = {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    imageUrl: string;
 }

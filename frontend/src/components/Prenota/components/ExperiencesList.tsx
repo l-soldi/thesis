@@ -2,8 +2,11 @@ import { useContext } from 'react'
 import { CardCarousel } from '../../../design-system'
 import { ReservationContext, ReservationDispatchContext } from '../../../state/Reservation'
 import { Actions } from '../../../state/Reservation/enums'
+import { Experience } from '../../../api/types'
+import { useLoaderData } from 'react-router-dom'
 
 const ExperiencesList = () => {
+  const data = useLoaderData() as Experience[]
   const dispatch = useContext(ReservationDispatchContext)
   const state = useContext(ReservationContext)
 
@@ -13,7 +16,7 @@ const ExperiencesList = () => {
 
   return (
     <section className='side'>
-      <CardCarousel handleClick={handleClick} idChosen={state?.expId ?? 0}/>
+      <CardCarousel handleClick={handleClick} idChosen={state?.expId ?? 0} data={data ?? []}/>
     </section>
   )
 }

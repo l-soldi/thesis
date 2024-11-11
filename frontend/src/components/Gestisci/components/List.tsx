@@ -1,22 +1,20 @@
-import React, { useCallback, useEffect } from 'react'
-import { getReservations } from '../../../api/methods'
+import { Reservation } from '../../../api/types'
+import ExperienceRecap from './ExperienceRecap'
+import { useLoaderData } from 'react-router-dom'
 
-const List = () => {
-    const [reservations, setReservations] = React.useState([])
+type Props = {
+    handleSelected: (val: number) => void
+}
 
-    const init = useCallback(async() => {
-        const list = await getReservations()
-        setReservations(list)
-    }, [])
-    
-    useEffect(() => {
-        init()
-    }, [init])
+const List = ({handleSelected}: Props) => {
+    const data = useLoaderData() as Reservation[]
   
-    return (
-    <div>list <br/>
-    {reservations.map(elem => <div>{JSON.stringify(elem)}</div>)}
+    return (<>
+    <h2>Le tue prenotazioni </h2>
+    <div className='container'>
+        {data.map(elem => <ExperienceRecap {...elem} handleSelected={() => handleSelected(elem.id)}/>)}
     </div>
+    </>
   )
 }
 
