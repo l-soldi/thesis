@@ -19,6 +19,7 @@ pip-selfcheck.json
 
 # Database
 reservations.db
+experiences.db
 
 # Compiled Python files
 *.pyc

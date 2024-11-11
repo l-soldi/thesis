@@ -1,13 +1,20 @@
 from app import app, db
 from flask import request, jsonify
-from models import Reservation
+from models.reservation import Reservation
+from models.experience import Experience
+
+# Get all experiences
+@app.route("/api/experiences",methods=["GET"])
+def get_experiences():
+  experiences = Experience.query.all() 
+  result = [experience.to_json() for experience in experiences]
+  return jsonify(result)
 
 # Get all reservations
 @app.route("/api/reservations",methods=["GET"])
 def get_reservations():
   reservations = Reservation.query.all() 
   result = [reservation.to_json() for reservation in reservations]
-  print(result)
   return jsonify(result)
 
 # Create a reservation
