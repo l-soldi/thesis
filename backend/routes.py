@@ -3,18 +3,27 @@ from flask import request, jsonify
 from models.reservation import Reservation
 from models.experience import Experience
 
-# Get all experiences
-@app.route("/api/experiences",methods=["GET"])
-def get_experiences():
-  experiences = Experience.query.all() 
-  result = [experience.to_json() for experience in experiences]
-  return jsonify(result)
-
 # Get all reservations
 @app.route("/api/reservations",methods=["GET"])
 def get_reservations():
   reservations = Reservation.query.all() 
   result = [reservation.to_json() for reservation in reservations]
+
+  for reservation in result:
+    reservation['totalPrice'] = get_total_price(reservation)
+  return jsonify(result)
+
+# Gets a specific reservation
+@app.route("/api/reservations/<int:id>",methods=["GET"])
+def get_reservation(id):
+  reservation = Reservation.query.get(id)
+
+  if reservation is None:
+      return jsonify({"error":"reservation not found"}), 404
+
+  result = reservation.to_json()
+  result['totalPrice'] = get_total_price(result)
+
   return jsonify(result)
 
 # Create a reservation
@@ -63,6 +72,13 @@ def delete_reservation(id):
     db.session.rollback()
     return jsonify({"error":str(e)}),500
 
+# Get all experiences
+@app.route("/api/experiences",methods=["GET"])
+def get_experiences():
+  experiences = Experience.query.all() 
+  result = [experience.to_json() for experience in experiences]
+  return jsonify(result)
+
 # Update a reservation
 @app.route("/api/reservations/<int:id>",methods=["PATCH"])
 def update_reservation(id):
@@ -87,3 +103,9 @@ def update_reservation(id):
   except Exception as e:
     db.session.rollback()
     return jsonify({"error":str(e)}),500
+
+# Funzione di utilita` per ottenere il prezzo totale
+def get_total_price(reservation):
+  experience = Experience.query.get(reservation['expId'])
+  total_price = experience.price * reservation['peopleNum'] if experience else None
+  return total_price
