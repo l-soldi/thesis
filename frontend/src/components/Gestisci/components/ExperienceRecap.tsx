@@ -6,7 +6,7 @@ type Props = Reservation & { handleSelected: () => void}
 const ExperienceRecap = (props: Props) => {
 
   return (
-    <div onClick={props.handleSelected} style={{border: "2px solid black"}}>
+    <div onClick={props.handleSelected} className='exp-recap-card'>
         <h3>{props.id}</h3>
         <p>{props.name}</p>
         <p>{props.lastname}</p>

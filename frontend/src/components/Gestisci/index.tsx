@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom'
 import List from './components/List'
+import { Reservation } from '../../api/types'
+import './style.css'
 
 const Gestisci = () => {
+  const data = useLoaderData() as Reservation[]
   const [selected, setSelected] = useState(0)
   const navigate = useNavigate()
 
@@ -10,11 +13,16 @@ const Gestisci = () => {
     setSelected(val)
     navigate(`/gestisci/${val}`)
   }
-  return (
-    <div>
-      <List handleSelected={handleSelected}/>
-      {!!selected && <Outlet />}
+
+  const showOutlet = !!selected && !!data.length
+
+  return (<>
+    <h2>Le tue prenotazioni </h2>
+    <div className='container'>
+      <List handleSelected={handleSelected} showOutlet={showOutlet}/>
+      {showOutlet && <Outlet />}
     </div>
+  </>
   )
 }
 

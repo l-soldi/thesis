@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+
+    .detail-extend {
+        flex-basis: 25%;
+    }
+
+    .exp-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        transition: all 0.3s ease;
+    }
+
+    .detail-collapse {
+        .exp-list {
+            flex-direction: row;
+        }
+    }
+
+
+}
+
+.exp-recap-card{
+    border: 2px solid var(--light);
+    padding: var(--spacing-sm);
+    border-radius: 4px;
+}

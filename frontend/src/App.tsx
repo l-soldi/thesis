@@ -9,7 +9,7 @@ import Gestisci from './components/Gestisci';
 import ErrorPage from './components/Error';
 import DettaglioPrenotazione from './components/DettaglioPrenotazione';
 import { ReservationProvider } from './state/Reservation';
-import { getExperiences, getReservations } from './api/methods';
+import { getExperiences, getReservation, getReservations } from './api/methods';
 
 function App() {
 
@@ -18,24 +18,18 @@ function App() {
       path: "/",
       element: <Prenota />,
       errorElement: <ErrorPage />,
-      loader: async () => {
-        return await getExperiences();
-      },
+      loader: getExperiences
     },
     {
       path: "/prenota",
       element: <Prenota />,
       errorElement: <ErrorPage />,
-      loader: async () => {
-        return await getExperiences();
-      },
+      loader: getExperiences
     },
     {
       path: "/gestisci",
       element: <Gestisci />,
-      loader: async () => {
-        return await getReservations();
-      },
+      loader: getReservations,
       errorElement: <ErrorPage />,
       children: [
         {
@@ -43,7 +37,7 @@ function App() {
           element: <DettaglioPrenotazione />,
           loader: async ({ params }) => {
             const { id } = params;
-            return await getReservations().then(reservations => reservations.find(reservation => reservation.id === Number(id)));
+            return id ? await getReservation(parseInt(id)) : null;
           },
         },
       ],

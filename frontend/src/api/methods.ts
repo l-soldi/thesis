@@ -41,6 +41,25 @@ export const getReservations = async () : Promise<Reservation[]> => {
     }
 }
 
+export const getReservation = async (id: number) : Promise<Reservation | null> => {
+    try {
+        const response = await fetch(`${BASE_URL}/reservations/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}, ${response.statusText}`);
+        }
+        return response.json()
+    } catch (error) {
+        console.error(error);
+        return null
+    }
+}
+
 export const getExperiences = async () : Promise<Experience[]> => {
     try {
         const response = await fetch(`${BASE_URL}/experiences`, {
