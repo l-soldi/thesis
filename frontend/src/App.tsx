@@ -10,6 +10,8 @@ import ErrorPage from './components/Error';
 import DettaglioPrenotazione from './components/DettaglioPrenotazione';
 import { ReservationProvider } from './state/Reservation';
 import { getExperiences, getReservation, getReservations } from './api/methods';
+import { ModalProvider } from './state/Modal';
+import { ToastProvider } from './state/Toast';
 
 function App() {
 
@@ -46,10 +48,14 @@ function App() {
 
   return (
     <ReservationProvider>
-      <Navbar />
-      <main>
-       <RouterProvider router={router} />
-      </main>
+      <ModalProvider>
+        <ToastProvider>
+          <Navbar />
+          <main>
+            <RouterProvider router={router} />
+          </main>
+        </ToastProvider>
+      </ModalProvider>
     </ReservationProvider>
   )
 }

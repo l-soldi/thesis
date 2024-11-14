@@ -1,5 +1,5 @@
 import { BASE_URL } from "./endpoint";
-import { Experience, Reservation } from "./types";
+import { Experience, FullReservation, Reservation } from "./types";
 
 export const createReservations = async (values: Omit<Reservation, "id">) => {
     try {
@@ -22,7 +22,7 @@ export const createReservations = async (values: Omit<Reservation, "id">) => {
     }
 }
 
-export const getReservations = async () : Promise<Reservation[]> => {
+export const getReservations = async () : Promise<FullReservation[]> => {
     try {
         const response = await fetch(`${BASE_URL}/reservations`, {
             method: 'GET',
@@ -41,7 +41,7 @@ export const getReservations = async () : Promise<Reservation[]> => {
     }
 }
 
-export const getReservation = async (id: number) : Promise<Reservation | null> => {
+export const getReservation = async (id: number) : Promise<FullReservation | null> => {
     try {
         const response = await fetch(`${BASE_URL}/reservations/${id}`, {
             method: 'GET',

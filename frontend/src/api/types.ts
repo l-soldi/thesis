@@ -1,3 +1,5 @@
+export type FullReservation = Reservation & { experience: Experience, totalPrice: number }
+
 export type Reservation = {
     id: number;
     name: string;

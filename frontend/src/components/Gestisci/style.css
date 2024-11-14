@@ -29,3 +29,26 @@
     padding: var(--spacing-sm);
     border-radius: 4px;
 }
+
+.exp {
+    display: flex;
+    max-width: 50%;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-self: start;
+    justify-self: end;
+    padding:  auto;
+
+    .ctas {
+        display: flex;
+        gap: var(--spacing-sm);
+        justify-content: space-between;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: row;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
+    }
+}

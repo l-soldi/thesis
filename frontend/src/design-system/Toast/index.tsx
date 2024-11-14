@@ -1,32 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { ToastContext } from '../../state/Toast';
 import './style.css';
+import { ToastVariants } from './enum';
 
 interface ToastProps {
+    show: boolean;
     message: string;
-    duration: number; //in ms
-    onClose: () => void;
-    variant: 'success' | 'error';
+    variant: ToastVariants;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, duration = 3000, onClose, variant = 'success' }) => {
-    const [visible, setVisible] = useState(true);
+const Toast = ({ show, message, variant = ToastVariants.SUCCESS }: ToastProps) => {
+    const { closeToast } = useContext(ToastContext);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setVisible(false);
-            if (onClose) {
-                onClose();
-            }
-        }, duration);
-
+            closeToast();
+        }, 3000);
         return () => clearTimeout(timer);
-    }, [duration, onClose]);
-
-    if (!visible) return null;
+    }, [show]);
 
     return (
-        <div className={`toast toast-${variant}`}>
-            {message}
+        <div className={`toast toast-${variant.toLowerCase()} ${!show && 'toast-non-visible'}`}>
+            THIS IS A VERY CUTE MESSAGE: {message}
         </div>
     );
 };

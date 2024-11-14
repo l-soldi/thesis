@@ -4,15 +4,18 @@ import { Input } from '../../../../../design-system'
 import { Actions, UserFields } from '../../../../../state/Reservation/enums'
 import { createReservations } from '../../../../../api/methods'
 import { useNavigate } from 'react-router-dom'
+import { ToastContext } from '../../../../../state/Toast'
 
 const Form = () => {
     const dispatch = useContext(ReservationDispatchContext)
     const state = useContext(ReservationContext)
     const navigate = useNavigate()
+    const { showSuccessToast } = useContext(ToastContext)
 
     const createReservation = useCallback(async (values: any) => {
         if(dispatch) dispatch({type: Actions.UPDATE_USER, payload: values})
         const resId = await createReservations({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum})
+        showSuccessToast()
         navigate(`/gestisci/${resId}`)
     }, [dispatch])
 

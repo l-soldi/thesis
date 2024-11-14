@@ -4,6 +4,18 @@
     font-size: 14px;
     margin: 10px 0;
     color: var(--toast-text-color);
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    z-index: 9999;
+    transition: all .3s ease;
+}
+
+.toast-non-visible {
+    opacity: 0;
+    visibility: hidden;
+    right: -100%;
+    transition: all 2s ease;
 }
 
 .toast-success {

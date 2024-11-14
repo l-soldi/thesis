@@ -6,7 +6,7 @@ export enum Actions {
     RESET = 'RESET',
   }
 
-export  enum UserFields {
+export enum UserFields {
     NAME = 'name',
     LASTNAME = 'lastname',
     EMAIL = 'email',
