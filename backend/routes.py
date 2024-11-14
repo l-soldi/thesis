@@ -11,6 +11,7 @@ def get_reservations():
 
   for reservation in result:
     reservation['totalPrice'] = get_total_price(reservation)
+    reservation['experience'] = Experience.query.get(reservation['expId']).to_json()
   return jsonify(result)
 
 # Gets a specific reservation
@@ -23,7 +24,7 @@ def get_reservation(id):
 
   result = reservation.to_json()
   result['totalPrice'] = get_total_price(result)
-
+  result['experience'] = Experience.query.get(result['expId']).to_json()
   return jsonify(result)
 
 # Create a reservation
@@ -72,13 +73,6 @@ def delete_reservation(id):
     db.session.rollback()
     return jsonify({"error":str(e)}),500
 
-# Get all experiences
-@app.route("/api/experiences",methods=["GET"])
-def get_experiences():
-  experiences = Experience.query.all() 
-  result = [experience.to_json() for experience in experiences]
-  return jsonify(result)
-
 # Update a reservation
 @app.route("/api/reservations/<int:id>",methods=["PATCH"])
 def update_reservation(id):
@@ -97,12 +91,18 @@ def update_reservation(id):
     reservation.expId = data.get("expId",reservation.expId)
     reservation.peopleNum = data.get("peopleNum",reservation.peopleNum)
 
-
     db.session.commit()
     return jsonify(reservation.to_json()),200
   except Exception as e:
     db.session.rollback()
     return jsonify({"error":str(e)}),500
+
+# Get all experiences
+@app.route("/api/experiences",methods=["GET"])
+def get_experiences():
+  experiences = Experience.query.all() 
+  result = [experience.to_json() for experience in experiences]
+  return jsonify(result)
 
 # Funzione di utilita` per ottenere il prezzo totale
 def get_total_price(reservation):
