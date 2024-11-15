@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ReservationContext } from '../../../../../state/Reservation'
-import { experiences } from '../../../../../design-system/CardCarousel/data'
+import { experiences } from '../../../../../components/CardCarousel/data'
 const ExpRecap = () => {
     const state = useContext(ReservationContext)
 

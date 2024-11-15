@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { CardCarousel } from '../../../design-system'
+import { CardCarousel } from '../../../components'
 import { ReservationContext, ReservationDispatchContext } from '../../../state/Reservation'
 import { Actions } from '../../../state/Reservation/enums'
 import { Experience } from '../../../api/types'

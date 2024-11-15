@@ -1,12 +1,18 @@
 import { useLoaderData } from "react-router-dom"
 import { FullReservation } from "../../api/types"
+import { useContext } from "react"
+import { ModalContext } from "../../state/Modal"
+import { ModalTypes } from "../../components/Modal/types"
+import { ToastContext } from "../../state/Toast"
 
 const DettaglioPrenotazione = () => {
   const data = useLoaderData() as FullReservation
+  const { showModal } = useContext(ModalContext)
+  const { showSuccessToast, showErrorToast } = useContext(ToastContext)
 
-  const handleCTA = () => {
-    // TODO: implementare stato per gestione modali e toasts
-
+  const handleCTA = (type: ModalTypes) => {
+    const cta = () => { console.log('cta ', type) }
+    showModal({ type, cta })
   }
 
   return (
@@ -36,9 +42,8 @@ const DettaglioPrenotazione = () => {
         </div>
       </div>
       <div className="ctas">
-        <button onClick={handleCTA}> Test toast </button>
-        <button> Modifica </button>
-        <button> Cancella </button>
+        <button onClick={()=> {handleCTA(ModalTypes.EDIT)}}> Modifica </button>
+        <button onClick={() => {handleCTA(ModalTypes.DELETE)}} > Cancella </button>
       </div>
     </div>
   )

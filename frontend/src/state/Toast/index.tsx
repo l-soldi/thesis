@@ -1,6 +1,6 @@
 import  { createContext, ReactNode } from "react";
-import Toast from "../../design-system/Toast";
-import useToast from "../../design-system/Toast/useToast";
+import Toast from "../../components/Toast";
+import useToast from "../../components/hooks/useToast";
 
 const initialState = {
   show: false,
@@ -11,7 +11,7 @@ const initialState = {
 
 const ToastContext = createContext(initialState);
 
-const ToastProvider = ({ children } : {children: ReactNode}) => {
+const ToastProvider = ({ children } : { children: ReactNode }) => {
   const toast = useToast();
 
   return (

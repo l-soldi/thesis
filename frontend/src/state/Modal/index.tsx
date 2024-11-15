@@ -1,23 +1,24 @@
-import  { createContext, ReactNode, useMemo } from "react";
-import Modal, { ModalTypes } from "../../design-system/Modal";
-import useModal from "../../design-system/Modal/useModal";
+import  { createContext, ReactNode } from "react";
+import useModal from "../../components/hooks/useModal";
+import { ModalTypes } from "../../components/Modal/types";
+import Modal from "../../components/Modal";
 
 const initialState = {
   show: false,
-  type: ModalTypes.EDIT,
+  showModal: (args) => {},
+  type: undefined as ModalTypes | undefined,
   cta: () => {},
-  showModal: (type: ModalTypes, cta: () => void) => {},
+  closeModal: () => {}
 }
 
 const ModalContext = createContext(initialState);
 
 const ModalProvider = ({ children } : {children: ReactNode}) => {
-  const { show, type, cta, showModal } = useModal();
-  const contextValue = useMemo(() => ({ show, type, cta, showModal }), [show, type, cta, showModal]);
+  const contextValue = useModal();
 
   return (
     <ModalContext.Provider value={contextValue}>
-      <Modal show={show} type={type} onConfirm={cta}/>
+      <Modal />
       {children}
     </ModalContext.Provider>
   );

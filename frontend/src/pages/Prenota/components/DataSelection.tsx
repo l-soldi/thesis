@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Input } from '../../../design-system'
+import { Input } from '../../../components'
 import { ReservationContext, ReservationDispatchContext } from '../../../state/Reservation'
 import { Actions } from '../../../state/Reservation/enums'
 import { formatDate } from '../utils'

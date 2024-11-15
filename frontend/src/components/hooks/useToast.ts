@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToastVariants } from "./enum";
+import { ToastVariants } from "../Toast/enum";
 
 type ShowToastArgs = {
   variant: ToastVariants,

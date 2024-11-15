@@ -3,11 +3,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Navbar from './design-system/Navbar'
-import Prenota from './components/Prenota';
-import Gestisci from './components/Gestisci';
-import ErrorPage from './components/Error';
-import DettaglioPrenotazione from './components/DettaglioPrenotazione';
+import Navbar from './components/Navbar'
+import Prenota from './pages/Prenota';
+import Gestisci from './pages/Gestisci';
+import ErrorPage from './pages/Error';
+import DettaglioPrenotazione from './pages/DettaglioPrenotazione';
 import { ReservationProvider } from './state/Reservation';
 import { getExperiences, getReservation, getReservations } from './api/methods';
 import { ModalProvider } from './state/Modal';

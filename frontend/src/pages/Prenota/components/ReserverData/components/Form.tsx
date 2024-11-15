@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react'
 import { ReservationContext, ReservationDispatchContext } from '../../../../../state/Reservation'
-import { Input } from '../../../../../design-system'
+import { Input } from '../../../../../components'
 import { Actions, UserFields } from '../../../../../state/Reservation/enums'
 import { createReservations } from '../../../../../api/methods'
 import { useNavigate } from 'react-router-dom'
