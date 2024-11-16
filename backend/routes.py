@@ -83,13 +83,12 @@ def update_reservation(id):
 
     data = request.json
 
-    reservation.name = data.get("name",reservation.name)
-    reservation.lastname = data.get("lastname",reservation.lastname)
-    reservation.email = data.get("email",reservation.email)
-    reservation.phone = data.get("phone",reservation.phone)
-    reservation.date = data.get("date",reservation.date)
-    reservation.expId = data.get("expId",reservation.expId)
-    reservation.peopleNum = data.get("peopleNum",reservation.peopleNum)
+    reservation.name = data.get("name")
+    reservation.lastname = data.get("lastname")
+    reservation.email = data.get("email")
+    reservation.phone = data.get("phone")
+    reservation.date = data.get("date")
+    reservation.people_num = data.get("peopleNum")
 
     db.session.commit()
     return jsonify(reservation.to_json()),200
