@@ -60,6 +60,39 @@ export const getReservation = async (id: number) : Promise<FullReservation | nul
     }
 }
 
+export const deleteReservation = async (id: number) => {
+    try{
+        const response = await fetch(`${BASE_URL}/reservations/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}, ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const updateReservation = async (id: number, values: Omit<Reservation, "expId"| "id">) => {
+    try{
+        const response = await fetch(`${BASE_URL}/reservations/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values)
+        })
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}, ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const getExperiences = async () : Promise<Experience[]> => {
     try {
         const response = await fetch(`${BASE_URL}/experiences`, {

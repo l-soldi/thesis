@@ -3,15 +3,33 @@ import { FullReservation } from "../../api/types"
 import { useContext } from "react"
 import { ModalContext } from "../../state/Modal"
 import { ModalTypes } from "../../components/Modal/types"
-import { ToastContext } from "../../state/Toast"
+import { deleteReservation, updateReservation } from "../../api/methods"
+import { useApi } from "../../api/hooks/useApi"
 
 const DettaglioPrenotazione = () => {
   const data = useLoaderData() as FullReservation
   const { showModal } = useContext(ModalContext)
-  const { showSuccessToast, showErrorToast } = useContext(ToastContext)
+
+  const ctaUpdate = useApi(() => updateReservation(data.id, values), `/gestisci/${data.id}`, true)
+  const ctaDelete = useApi(() => deleteReservation(data.id), `/gestisci`, true)
+
+  const values = {
+    name: "edit_"+data.name,
+    lastname: "edit_"+data.lastname,
+    email: "edit_"+data.email,
+    phone: "edit_"+data.phone,
+    date: data.date,
+    peopleNum: data.peopleNum,
+  }
 
   const handleCTA = (type: ModalTypes) => {
-    const cta = () => { console.log('cta ', type) }
+    let cta = null
+    if(type === ModalTypes.DELETE) {
+      cta = ctaDelete
+    }
+    if(type === ModalTypes.EDIT) {
+      cta = ctaUpdate
+    }
     showModal({ type, cta })
   }
 
@@ -42,8 +60,8 @@ const DettaglioPrenotazione = () => {
         </div>
       </div>
       <div className="ctas">
-        <button onClick={()=> {handleCTA(ModalTypes.EDIT)}}> Modifica </button>
         <button onClick={() => {handleCTA(ModalTypes.DELETE)}} > Cancella </button>
+        <button onClick={()=> {handleCTA(ModalTypes.EDIT)}}> Modifica </button>
       </div>
     </div>
   )

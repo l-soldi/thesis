@@ -4,7 +4,11 @@ import { ReservationContext, ReservationDispatchContext } from '../../../state/R
 import { Actions } from '../../../state/Reservation/enums'
 import { formatDate } from '../utils'
 
-const DataSelection = () => {
+type Props = {
+  setShowUserData: (value: boolean) => void
+}
+
+const DataSelection = ({setShowUserData}: Props) => {
   const today = formatDate(new Date())
   const state = useContext(ReservationContext)
   const dispatch = useContext(ReservationDispatchContext)
@@ -32,7 +36,7 @@ const DataSelection = () => {
         min={1}
         max={6}
       />
-      {/* TODO: idea: filtro del prezzo */}
+      <button onClick={() => { setShowUserData(true) }}> Inserisci i tuoi dati</button>
     </section>
   )
 }

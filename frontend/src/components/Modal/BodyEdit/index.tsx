@@ -1,13 +1,13 @@
 import { ModalProps } from '../types';
-import './style.css'
 
 const BodyEdit = ({ show } : ModalProps) => {
   if (!show) return null;
 
   return (
-    <div>
-      TODO: inserire form per cambiare i dati di chi prenota
-    </div>
+    <>
+      <h3>Modifica dati della prenotazione</h3>
+      <p className="subtitle">E' permessa la modifica dei soli dati dell'utente, della data e del numero dei partecipanti.</p>
+    </>
   )
 }
 

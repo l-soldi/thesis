@@ -1,11 +1,12 @@
 .modal {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 500px;
+    max-width: 600px;
     background-color: white;
+    color: black;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     z-index: 1000;
@@ -36,11 +37,15 @@
     margin: 0;
 }
 
-.modal-close {
-    background: none;
+button.close {
+    position: absolute;
+    top: 0;
+    right: 0;
     border: none;
-    font-size: 1.5em;
-    cursor: pointer;
+    margin: var(--spacing-sm);
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .modal-body {
@@ -49,8 +54,8 @@
 
 .modal-footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     border-top: 1px solid #e5e5e5;
-    padding-top: 10px;
-    margin-top: 20px;
+    padding-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
 }

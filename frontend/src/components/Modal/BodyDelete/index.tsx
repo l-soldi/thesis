@@ -1,4 +1,3 @@
-import './style.css'
 import { ModalProps } from '../types';
 
 const BodyDelete = ({ show }: ModalProps) => {

@@ -22,4 +22,10 @@ button {
       background-color: var(--white);
       cursor: auto;
   }
+
+  &.secondary {
+      background-color: var(--white);
+      color: var(--teal);
+      border: 2px solid var(--teal);
+    }
 }

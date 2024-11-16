@@ -10,13 +10,14 @@ const Form = () => {
     const dispatch = useContext(ReservationDispatchContext)
     const state = useContext(ReservationContext)
     const navigate = useNavigate()
-    const { showSuccessToast } = useContext(ToastContext)
+    const { showSuccessToast, showErrorToast } = useContext(ToastContext)
 
     const createReservation = useCallback(async (values: any) => {
         if(dispatch) dispatch({type: Actions.UPDATE_USER, payload: values})
-        const resId = await createReservations({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum})
-        showSuccessToast()
-        navigate(`/gestisci/${resId}`)
+        createReservations({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum}).then(resId => {
+    showSuccessToast()
+    navigate(`/gestisci/${resId}`)
+    }).catch(showErrorToast)
     }, [dispatch])
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

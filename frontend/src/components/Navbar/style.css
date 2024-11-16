@@ -30,7 +30,7 @@
 }
 
 .navbar-item a:hover, .navbar-item a:visited {
-    color: var(--light);
+    color: var(--white);
     text-decoration: underline;
 }
 
@@ -43,15 +43,4 @@
     background-color: var(--teal);
     color: var(--white);
     border: none;
-}
-
-/* Responsive navbar - hide links on small screens */
-@media (max-width: 768px) {
-    .navbar-item {
-        display: none;
-    }
-
-    .navbar-toggle {
-        display: block;
-    }
 }

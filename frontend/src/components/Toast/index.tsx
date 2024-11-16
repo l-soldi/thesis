@@ -21,7 +21,7 @@ const Toast = ({ show, message, variant = ToastVariants.SUCCESS }: ToastProps) =
 
     return (
         <div className={`toast toast-${variant.toLowerCase()} ${!show && 'toast-non-visible'}`}>
-            THIS IS A VERY CUTE MESSAGE: {message}
+            {message}
         </div>
     );
 };
