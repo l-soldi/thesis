@@ -9,10 +9,12 @@ export const useApi = (method: any, navigateTo?:string, revalidate=false) => {
 
   const callback = async (values: any) => {
     method(values)
-      .then(() => {
+      .then((res: string) => {
         showSuccessToast();
         if(revalidate) revalidator.revalidate();
-        if(navigateTo) navigate(navigateTo, { replace: true });
+        if(navigateTo) {
+          const _navigateTo = navigateTo.replace(':id', res);
+          navigate(_navigateTo, { replace: true })};
       })
       .catch(showErrorToast);
   }

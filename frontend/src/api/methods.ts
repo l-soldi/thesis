@@ -14,7 +14,7 @@ export const createReservations = async (values: Omit<Reservation, "id">) => {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}, ${response.statusText}`);
         }
-        const {id} = await response.json()
+        const { id } = await response.json()
         return id
     } catch (error) {
         console.error(error);

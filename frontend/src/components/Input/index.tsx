@@ -1,16 +1,19 @@
-import React, { useId } from 'react';
+import React, { HTMLInputTypeAttribute, InputHTMLAttributes, useId } from 'react';
 import './style.css'
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    type: 'text' | 'number' | 'date' | 'tel';
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    type: HTMLInputTypeAttribute;
     label: string;
+    error?: boolean;
+    errorMessage?: string
 }
 
-const Input: React.FC<InputProps> = ({ type, ...props }) => {
+const Input: React.FC<InputProps> = ({ type, label, error, errorMessage, ...props }) => {
     const id = useId();
 
     return <span>
-        <label htmlFor={id}>{props.label}</label>
+        <label htmlFor={id}>{label}</label>
         <input type={type} id={id} {...props} />
+        {error && <span className='error'>{errorMessage}</span>}
     </span>
 };
 

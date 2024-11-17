@@ -22,7 +22,7 @@ const DataSelection = ({setShowUserData}: Props) => {
       <Input type='date'
         label='Giorno'
         value={state?.date}
-        onChange={(e) => handleChange(e.target.value, Actions.UPDATE_DATE)}
+        onChange={(e) => { handleChange(e.target.value, Actions.UPDATE_DATE) }}
         min={today}
       />
       <Input type='number'
@@ -32,7 +32,8 @@ const DataSelection = ({setShowUserData}: Props) => {
           let val = parseInt(e.target.value)
           if (val < 0) val = 1;
           if (val > 6) val = 6;
-          return handleChange(val, Actions.UPDATE_PEOPLE)}}
+          handleChange(val, Actions.UPDATE_PEOPLE)}
+        }
         min={1}
         max={6}
       />
