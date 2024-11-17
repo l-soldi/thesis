@@ -17,30 +17,29 @@
 /* Navbar links */
 .navbar-menu {
     display: flex;
-    flex-direction: row;
-    gap: var(--spacing-sm);
-    list-style: none;
+    gap: var(--spacing-md);
     padding: var(--spacing-sm) 0 0;
+    list-style: none;
 }
 
-.navbar-item a {
+a.selected {
+    color: var(--teal);
+    background-color: color-mix(in srgb, var(--white) 90%, transparent);
+    font-weight: 600;
     text-decoration: none;
-    padding: 0;
-    transition: all 0.3s ease;
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius);
 }
 
-.navbar-item a:hover, .navbar-item a:visited {
-    color: var(--white);
-    text-decoration: underline;
-}
+.navbar-item > a {
+    &:hover {
+        color: var(--white);
+        text-decoration: underline;
+    }
 
-
-/* Navbar toggle button */
-.navbar-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    background-color: var(--teal);
-    color: var(--white);
-    border: none;
+    &.selected:hover {
+        text-decoration: none;
+        cursor: default;
+        color: var(--teal);
+    }
 }

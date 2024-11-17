@@ -10,11 +10,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ type, label, error, errorMessage, ...props }) => {
     const id = useId();
 
-    return <span>
+    return <div className='input-container'>
         <label htmlFor={id}>{label}</label>
         <input type={type} id={id} {...props} />
-        {error && <span className='error'>{errorMessage}</span>}
-    </span>
+        {error && <div className='error-message'>{errorMessage}</div>}
+    </div>
 };
 
 export default Input;

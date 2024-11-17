@@ -43,7 +43,7 @@ const DettaglioPrenotazione = () => {
         <div className="details">
           <p>Data: {data.date}</p>
           <p>Per: {data.peopleNum} {data.peopleNum === 1 ? 'persona' : 'persone'}</p>
-          <p>Prezzo: {data.totalPrice}</p>
+          <p>Prezzo totale: {data.totalPrice}</p>
         </div>
 
         <div className="details">

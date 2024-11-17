@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import './style.css';
 
 const ErrorPage: React.FC = () => {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ const ErrorPage: React.FC = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '5rem' }}>
+        <div className="error-page">
             <h1>404 - Pagina Non Trovata</h1>
             <p>Spiacenti, la pagina che stai cercando non esiste.</p>
             <button onClick={handleGoBack}>Torna alla Home</button>

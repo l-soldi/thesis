@@ -27,7 +27,7 @@
 .exp-recap-card{
     border: 2px solid var(--light);
     padding: var(--spacing-sm);
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 }
 
 .exp {
