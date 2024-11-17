@@ -4,6 +4,14 @@ import { Actions } from "./enums"
 
 export const reservationReducer = (reservation: Reservation | null, action: {type: Actions, payload: Partial<Reservation>}) => {
     switch (action.type) {
+      case Actions.UPDATE_NAME:
+        return {...reservation, name: action.payload}
+      case Actions.UPDATE_LASTNAME:
+        return {...reservation, lastname: action.payload}
+      case Actions.UPDATE_EMAIL:
+        return {...reservation, email: action.payload}
+      case Actions.UPDATE_PHONE:
+        return {...reservation, phone: action.payload}
       case Actions.UPDATE_DATE:
         return {...reservation, date: action.payload}
       case Actions.UPDATE_PEOPLE:

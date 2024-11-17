@@ -12,10 +12,8 @@ const Form = () => {
     const ctaCreate = useApi((values) => createReservations(values), "/gestisci/:id", true)
     const { isValid, errors } = useFormIsValid()
 
-    //TODO: modificare in modo tale che all'onchange cambino tutti i valori cosi` da non dover fare un dispatch per ogni campo e avere validazione runtime
-
     const createReservation = (values: any) => {
-        if(dispatch) dispatch({type: Actions.UPDATE_USER, payload: values})
+        dispatch({type: Actions.UPDATE_USER, payload: values})
         ctaCreate({...values, date: state!.date, expId: state!.expId, peopleNum: state!.peopleNum})
     }
 
@@ -24,6 +22,10 @@ const Form = () => {
         const formData = new FormData(e.currentTarget as HTMLFormElement);
         const values = Object.fromEntries(formData.entries());
         createReservation(values);
+    }
+
+    const handleChange = (value: string, action: Actions) => {
+        dispatch({ type: action, payload: value })
     }
 
     return (
@@ -35,34 +37,48 @@ const Form = () => {
                     required
                     label='Nome'
                     name={UserFields.NAME}
-                    error={errors.indexOf(UserFields.NAME)}
-                    errorMessage={UserFields.NAME}
+                    minLength={2}
+                    maxLength={50}
+                    error={!!errors.find(err => err.field === UserFields.NAME)}
+                    errorMessage={errors.filter(err => err.field === UserFields.NAME)[0]?.msg}
+                    onChange={(e) => handleChange(e.target.value, Actions.UPDATE_NAME)}
                 />
                 <Input
                     type='text'
                     required
                     label='Cognome'
                     name={UserFields.LASTNAME}
-                    error={errors.indexOf(UserFields.LASTNAME)}
-                    errorMessage={UserFields.LASTNAME}
+                    minLength={2}
+                    maxLength={50}
+                    error={!!errors.find(err => err.field === UserFields.LASTNAME)}
+                    errorMessage={errors.filter(err => err.field === UserFields.LASTNAME)[0]?.msg}
+                    onChange={(e) => handleChange(e.target.value, Actions.UPDATE_LASTNAME)}
                 />
                 <Input
                     type='text'
                     required
                     label='Email'
                     name={UserFields.EMAIL}
-                    error={errors.indexOf(UserFields.EMAIL)}
-                    errorMessage={UserFields.EMAIL}
+                    minLength={2}
+                    maxLength={50}
+                    error={!!errors.find(err => err.field === UserFields.EMAIL)}
+                    errorMessage={errors.filter(err => err.field === UserFields.EMAIL)[0]?.msg}
+                    onChange={(e) => handleChange(e.target.value, Actions.UPDATE_EMAIL)}
                 />
                 <Input
                     type='tel'
                     required
                     label='Telefono'
                     name={UserFields.PHONE}
-                    error={errors.indexOf(UserFields.PHONE)}
-                    errorMessage={UserFields.PHONE}
+                    minLength={10}
+                    maxLength={12}
+                    error={!!errors.find(err => err.field === UserFields.PHONE)}
+                    errorMessage={errors.filter(err => err.field === UserFields.PHONE)[0]?.msg}
+                    onChange={(e) => handleChange(e.target.value, Actions.UPDATE_PHONE)}
                 />
-                <button disabled={!isValid}> Conferma </button>
+                <span>
+                    <button disabled={!isValid}> Conferma </button>
+                </span>
             </form>
         </section>
     )

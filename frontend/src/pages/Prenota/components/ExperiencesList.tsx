@@ -15,7 +15,7 @@ const ExperiencesList = () => {
   }
 
   return (
-    <section className='side'>
+    <section className='side-right'>
       <CardCarousel handleClick={handleClick} idChosen={state?.expId ?? 0} data={data ?? []}/>
     </section>
   )

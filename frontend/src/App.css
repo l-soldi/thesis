@@ -7,8 +7,8 @@ main {
 /*#region button*/
 /* Stile generico bottoni */
 button {
-  color: var(--white);
-  background-color: var(--teal);
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-bg);
   cursor: pointer;
 
   font-size: 16px;
@@ -16,7 +16,7 @@ button {
 
   padding: var(--spacing-sm);
 
-  border: 2px solid var(--brown);
+  border: var(--button-border);
   border-radius: var(--border-radius);
 
   display: flex;
@@ -24,16 +24,16 @@ button {
   align-items: center;
 
   &:disabled {
-      color: var(--dark-brown);
-      background-color: var(--disabled);
+      color: var(--button-disabled-color);
+      background-color: var(--button-disabled-bg);
       cursor: auto;
-      border-width: 1px;
+      border: var(--button-disabled-border);
   }
 
   &.secondary {
-      background-color: var(--white);
-      color: var(--teal);
-      border: 2px solid var(--teal);
+      background-color: var(--button-secondary-bg);
+      color: var(--button-secondary-color);
+      border: var(--button-secondary-border);
     }
 }
 /*#endregion button*/
@@ -42,7 +42,7 @@ button {
 /* Stile generico anchors */
 
 a {
-  color: var(--white);
+  color: var(--secondary-text-color);
   text-decoration: none;
 
   &:hover{
@@ -58,7 +58,7 @@ a {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: baseline;
   margin-bottom: var(--spacing-sm);
 
@@ -68,6 +68,7 @@ a {
 }
 
 label {
+  color: var(--input-color);
   display: block;
   font-size: 16px;
   font-weight: 550;
@@ -97,3 +98,57 @@ input {
   margin-top: 1px;
 }
 /*#endregion input*/
+
+/*#region container*/
+/* Stile generico container */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+
+  @media screen and (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+  }
+}
+
+.side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 50%;
+}
+
+.data-input {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+/*#endregion container*/
+
+/*#region userDataInputForm*/
+/* Stile form per inserimento dati utente */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  >div {
+    padding: 0 var(--spacing-md);
+    flex-basis: 50%;
+  }
+
+  > span{
+    width: 100%;
+
+    >button {
+      place-self: end;
+      margin-right: var(--spacing-md);
+    }
+  }
+}
+/*#endregion userDataInputForm*/

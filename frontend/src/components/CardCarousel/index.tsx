@@ -15,7 +15,7 @@ type Props = {
     data: Card[]
 }
 
-const CardCarousel = ({handleClick, idChosen, data} : Props) => {
+const CardCarousel = ({ handleClick, idChosen, data } : Props) => {
     return (
         <div className="card-carousel">
             {data.map(card => (

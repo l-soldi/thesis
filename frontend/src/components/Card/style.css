@@ -1,25 +1,36 @@
 .card {
     display: flex;
-    background-color: var(--white);
-    border: 2px solid var(--light);
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border: var(--card-border);
     border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
     transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
-    max-height: 400px;
+    max-height: 600px;
+    
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+        max-height: 150px;
+        max-height: 400px;
+    }
 }
 
 .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--card-shadow-hover);
 }
 
 .card-image {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    display: block;
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: block;
+        border-radius: var(--img-card-radius) 0 0 var(--img-card-radius);
+        width: 100%;
+        max-width: 150px;
+        height: auto;
+    }
 }
 
 .card-content {
@@ -27,14 +38,14 @@
 }
 
 .card-title {
-    color: var(--brown);
+    color: var(--card-color-accent);
     font-size: 1.5rem;
     margin: 0 0 8px;
 }
 
 .card-description {
     font-size: 1rem;
-    color: var(--brown);
+    color: var(--card-color);
 }
 
 .card-foot {
@@ -46,10 +57,11 @@
 
 .card-price{
     font-size: 1.25rem;
-    color: var(--brown);
+    font-weight: 700;
+    color: var(--card-color-accent);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .card {
         margin: 0 0 var(--spacing-md);
     }

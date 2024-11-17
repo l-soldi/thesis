@@ -12,7 +12,7 @@ interface CardProps {
 
 const Card = ({ title, description, imageUrl, price, handleClick, isChosen } : CardProps) => {
     return (
-        <div className="card">
+        <div className="card" onClick={handleClick}>
             <img src={imageUrl} alt={title} className="card-image" />
             <div className='card-content'>
                 <h2 className="card-title">{title}</h2>

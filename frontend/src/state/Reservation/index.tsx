@@ -1,5 +1,6 @@
 import { createContext, Dispatch, ReactNode, useReducer } from 'react';
 import { reservationReducer } from './reducer';
+import { formatDate } from '../../utils';
 
 interface Reservation {
     id: string;
@@ -18,7 +19,7 @@ export const initialReservation: Reservation = {
   lastname: '',
   email: '',
   phone: '',
-  date: '',
+  date: formatDate(new Date()),
   expId: 0,
   peopleNum: 1
 };

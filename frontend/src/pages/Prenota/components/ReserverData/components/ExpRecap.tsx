@@ -1,8 +1,12 @@
 import { useContext } from 'react'
 import { ReservationContext } from '../../../../../state/Reservation'
-import { experiences } from '../../../../../components/CardCarousel/data'
+import { useLoaderData } from 'react-router-dom'
+import { Experience } from '../../../../../api/types'
+
 const ExpRecap = () => {
     const state = useContext(ReservationContext)
+    const data = useLoaderData() as Experience[]
+    const experiences = data?.length > 0 ? data : []
     const selectedExperience = experiences.filter(elem => elem.id === state?.expId).length > 0 ? experiences.filter(elem => elem.id === state?.expId) : null
 
     return (

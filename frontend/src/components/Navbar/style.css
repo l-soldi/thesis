@@ -5,7 +5,8 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: var(--spacing-sm);
-    background-color: var(--teal);
+    color: var(--secondary-text-color);
+    background-color: var(--secondary-bg);
 }
 
 /* Navbar logo */
