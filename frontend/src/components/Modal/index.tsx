@@ -1,17 +1,21 @@
-
 import { useContext } from 'react'
-import { ModalContext } from '../../state/Modal';
 import { ModalTypes } from './types';
 import BodyEdit from './BodyEdit';
 import BodyDelete from './BodyDelete';
 import './style.css'
+import { ModalContext } from '../../state/Modal';
 
-const Modal = () => {
-    const { type, show, cta, closeModal } = useContext(ModalContext);
+type Props = {
+    type: ModalTypes | null;
+    cta?: () => Promise<any>;
+}
+
+const Modal = ({type, cta}: Props) => {
+    const {show, closeModal} = useContext(ModalContext)
 
     const handleOnConfirm = (e: { preventDefault: () => void; }) => {
         e.preventDefault()
-        cta();
+        cta?.();
         closeModal();
     }
 

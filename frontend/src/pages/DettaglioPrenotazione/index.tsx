@@ -1,28 +1,24 @@
 import { useLoaderData } from "react-router-dom"
 import { FullReservation } from "../../api/types"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ModalContext, ModalEditContext } from "../../state/Modal"
 import { ModalTypes } from "../../components/Modal/types"
 import { deleteReservation, updateReservation } from "../../api/methods"
 import { useApi } from "../../api/hooks/useApi"
+import Modal from "../../components/Modal"
 
 const DettaglioPrenotazione = () => {
   const data = useLoaderData() as FullReservation
-  const { showModal } = useContext(ModalContext)
   const { setFormValues, ...values } = useContext(ModalEditContext)
+  const { showModal } = useContext(ModalContext)
+  const [modalType, setModalType] = useState<ModalTypes | null>(null)
 
   const ctaUpdate = useApi(() => updateReservation(data.id, values), `/gestisci/${data.id}`, true)
   const ctaDelete = useApi(() => deleteReservation(data.id), `/gestisci`, true)
 
   const handleCTA = (type: ModalTypes) => {
-    let cta = null
-    if(type === ModalTypes.DELETE) {
-      cta = ctaDelete
-    }
-    if(type === ModalTypes.EDIT) {
-      cta = ctaUpdate
-    }
-    showModal({ type, cta })
+    showModal()
+    setModalType(type)
   }
 
   useEffect(() => {
@@ -36,7 +32,14 @@ const DettaglioPrenotazione = () => {
     })
   }, [data])
 
-  return (
+  const cta = modalType === ModalTypes.EDIT
+    ? ctaUpdate 
+    : modalType === ModalTypes.DELETE
+      ? ctaDelete 
+      : undefined
+
+  return (<>
+    <Modal type={modalType} cta={cta} />
     <div className="exp">
       <h3> Dettaglio prenotazione</h3>
       <div>
@@ -67,6 +70,7 @@ const DettaglioPrenotazione = () => {
         <button onClick={()=> {handleCTA(ModalTypes.EDIT)}}> Modifica </button>
       </div>
     </div>
+  </>
   )
 }
 
