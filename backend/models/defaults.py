@@ -1,7 +1,7 @@
 from app import db
 from models.experience import Experience
 
-titles = ["Concerto Rock", "Avventura di Escursionismo", "Cena nel Deserto", "Visita al Vecchio Castello"]
+titles = ["Concerto Rock", "Escursione tra le Alpi", "Cena nel Deserto", "Visita al Vecchio Castello"]
 descriptions = ["Un'esperienza emozionante di concerto rock con alcune delle migliori band rock. Goditi performance elettrizzanti, spettacoli di luci mozzafiato e una notte indimenticabile di musica e intrattenimento.",
 "Intraprendi un'avventura di escursionismo esaltante attraverso paesaggi mozzafiato. Perfetto per gli appassionati di attività all'aperto e gli amanti della natura. Vivi l'emozione di conquistare sentieri impegnativi e ammirare viste spettacolari.",
 "Immergiti nella bellezza serena del deserto con una cena gourmet sotto le stelle. Goditi un delizioso pasto preparato da chef di alto livello, circondato dal paesaggio tranquillo e maestoso del deserto.",
