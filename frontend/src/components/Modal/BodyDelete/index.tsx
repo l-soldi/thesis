@@ -5,7 +5,7 @@ const BodyDelete = ({ show }: ModalProps) => {
 
   return (
       <>
-        <h3> Sei sicuro di voler eliminare questa prenotazione? </h3>
+        <h3 className='modal-title'> Sei sicuro di voler eliminare questa prenotazione? </h3>
         <p> L'operazione non è reversibile, i dati andranno persi. </p>
       </>
   )

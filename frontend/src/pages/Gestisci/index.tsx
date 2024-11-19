@@ -20,7 +20,7 @@ const Gestisci = () => {
   return (<>
     <h2>Le tue prenotazioni </h2>
     <div className='container'>
-      <List handleSelected={handleSelected} showOutlet={showOutlet}/>
+      <List handleSelected={handleSelected} />
       {showOutlet && <Outlet />}
     </div>
   </>

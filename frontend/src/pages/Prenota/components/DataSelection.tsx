@@ -3,7 +3,6 @@ import { Input } from '../../../components'
 import { ReservationContext, ReservationDispatchContext } from '../../../state/Reservation'
 import { Actions } from '../../../state/Reservation/enums'
 import { formatDate } from '../../../utils'
-import { errorMessages } from '../../../constants/errors'
 import useFormIsValid from '../../../hooks/useFormIsValid'
 
 type Props = {
@@ -12,6 +11,7 @@ type Props = {
 
 const DataSelection = ({ setShowUserData }: Props) => {
   const today = formatDate(new Date())
+
   const state = useContext(ReservationContext)
   const dispatch = useContext(ReservationDispatchContext)
   const { errors } = useFormIsValid()

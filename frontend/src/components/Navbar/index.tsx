@@ -3,7 +3,7 @@ import './style.css';
 
 const Navbar = () => {
     const location = window.location.pathname;
-    console.log(window.location);
+
     return (
         <nav className="navbar">
             <h1 className="navbar-logo">

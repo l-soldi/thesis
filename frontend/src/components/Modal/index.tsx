@@ -17,15 +17,19 @@ const Modal = () => {
 
     if (!show || !type ) return null;
 
-    return <div className='modal'>
-        <button className='close secondary' onClick={closeModal} > x </button>
-        {type === ModalTypes.EDIT && <BodyEdit show={show} />}
-        {type === ModalTypes.DELETE && <BodyDelete show={show} />}
-        <div className='modal-footer'>
-            <button className='secondary' onClick={closeModal} > Annulla </button>
-            <button onClick={handleOnConfirm} > Conferma </button>
+    return <div className='modal-overlay'>
+        <div className='modal'>
+            <button className='close cancel' onClick={closeModal}> x </button>
+            <span className='modal-body'>
+                {type === ModalTypes.EDIT && <BodyEdit show={show} />}
+                {type === ModalTypes.DELETE && <BodyDelete show={show} />}
+            </span>
+            <div className='modal-footer'>
+                <button className='cancel' onClick={closeModal}> Annulla </button>
+                <button onClick={handleOnConfirm}> Conferma </button>
+            </div>
         </div>
-    </div>;
+    </div>
 }
 
 export default Modal

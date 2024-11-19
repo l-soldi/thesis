@@ -30,10 +30,10 @@ button {
       border: var(--button-disabled-border);
   }
 
-  &.secondary {
-      background-color: var(--button-secondary-bg);
-      color: var(--button-secondary-color);
-      border: var(--button-secondary-border);
+  &.cancel {
+      background-color: var(--button-cancel-bg);
+      color: var(--button-cancel-color);
+      border: var(--button-cancel-border);
     }
 }
 /*#endregion button*/
