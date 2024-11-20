@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { CardCarousel } from '../../../components'
+import { useLoaderData } from 'react-router-dom'
 import { ReservationContext, ReservationDispatchContext } from '../../../state/Reservation'
 import { Actions } from '../../../state/Reservation/enums'
 import { Experience } from '../../../api/types'
-import { useLoaderData } from 'react-router-dom'
+import { CardCarousel } from '../../../components'
 
 const ExperiencesList = () => {
   const data = useLoaderData() as Experience[]

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Input from '../Input'
 import { Fields } from '../../state/Reservation/enums'
 import { formatDate } from '../../utils'
-import { regexEmail, regexName, regexPhone } from '../../constants/regex'
+import { regexEmail, regexName, regexPhone } from '../Input/constants/regex'
 import { FullReservation } from '../../api/types'
 import { ReservationContext } from '../../state/Reservation'
 
@@ -18,7 +18,9 @@ const Form = ({ onSubmit, defaultValues }:Props) => {
     const defaultExpId = defaultValues?.expId ?? state?.expId
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      // Previene il comportamento di default del form
       e.preventDefault();
+      // Crea un oggetto FormData con i dati del form e lo trasforma in un oggetto
       const formData = new FormData(e.currentTarget as HTMLFormElement);
       const values = Object.fromEntries(formData.entries());
       onSubmit(values);

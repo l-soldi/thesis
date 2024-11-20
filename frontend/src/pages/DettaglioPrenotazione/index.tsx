@@ -1,10 +1,10 @@
+import { useContext, useState } from "react"
 import { useLoaderData } from "react-router-dom"
-import { FullReservation } from "../../api/types"
-import { useContext, useEffect, useState } from "react"
-import { ModalContext, ModalEditContext } from "../../state/Modal"
-import { ModalTypes } from "../../components/Modal/types"
-import { deleteReservation, updateReservation } from "../../api/methods"
 import { useApi } from "../../api/hooks/useApi"
+import { FullReservation } from "../../api/types"
+import { deleteReservation, updateReservation } from "../../api/methods"
+import { ModalContext } from "../../state/Modal"
+import { ModalTypes } from "../../components/Modal/types"
 import Modal from "../../components/Modal"
 
 const DettaglioPrenotazione = () => {

@@ -1,6 +1,7 @@
 import { BASE_URL } from "./endpoint";
 import { Experience, FullReservation, Reservation } from "./types";
 
+// API per la creazione di una prenotazione
 export const createReservations = async (values: Omit<Reservation, "id">) => {
     const response = await fetch(`${BASE_URL}/reservations`, {
         method: 'POST',
@@ -17,6 +18,7 @@ export const createReservations = async (values: Omit<Reservation, "id">) => {
     return id
 }
 
+// API per ottenere tutte le prenotazioni
 export const getReservations = async () : Promise<FullReservation[]> => {
     const response = await fetch(`${BASE_URL}/reservations`, {
         method: 'GET',
@@ -31,6 +33,7 @@ export const getReservations = async () : Promise<FullReservation[]> => {
     return response.json()
 }
 
+// API per ottenere una prenotazione specifica
 export const getReservation = async (id: number) : Promise<FullReservation | null> => {
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
         method: 'GET',
@@ -46,6 +49,7 @@ export const getReservation = async (id: number) : Promise<FullReservation | nul
 
 }
 
+// API per l'eliminazione di una prenotazione
 export const deleteReservation = async (id: number) => {
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
         method: 'DELETE',
@@ -58,6 +62,7 @@ export const deleteReservation = async (id: number) => {
     }
 }
 
+// API per la modifica di una prenotazione
 export const updateReservation = async (id: number, values: Omit<Reservation, "expId"| "id">) => {
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
         method: 'PATCH',
@@ -71,6 +76,7 @@ export const updateReservation = async (id: number, values: Omit<Reservation, "e
     }
 }
 
+// API per la lista esperienze
 export const getExperiences = async () : Promise<Experience[]> => {
     const response = await fetch(`${BASE_URL}/experiences`, {
         method: 'GET',

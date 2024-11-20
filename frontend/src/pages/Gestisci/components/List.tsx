@@ -1,7 +1,7 @@
+import { useLoaderData } from 'react-router-dom'
 import { FullReservation } from '../../../api/types'
 import Empty from './Empty'
 import ExperienceRecap from './ExperienceRecap'
-import { useLoaderData } from 'react-router-dom'
 
 type Props = {
     handleSelected: (val: number) => void,

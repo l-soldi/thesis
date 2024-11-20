@@ -1,7 +1,7 @@
-import Form from '../../../components/Form'
 import { useApi } from '../../../api/hooks/useApi'
 import { createReservations } from '../../../api/methods'
 import { Reservation } from '../../../api/types'
+import Form from '../../../components/Form'
 
 const DataSelection = () => {
   const ctaCreate = useApi((values) => createReservations(values), "/gestisci/:id", true)
@@ -9,7 +9,6 @@ const DataSelection = () => {
   const createReservation = (values: Omit<Reservation, "id">) => {
       ctaCreate({...values})
   }
-
 
   return (
     <section className='side data-input'>
