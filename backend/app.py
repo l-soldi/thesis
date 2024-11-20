@@ -6,6 +6,7 @@ import os
 # Istanzia e ritorna l'app Flask
 def create_app():
   app = Flask(__name__)
+  CORS(app)
   return app
 
 # Istanzia e ritorna SQLAlchemy, ORM utilizzato per interfacciarsi con un db SQLite
