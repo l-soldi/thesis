@@ -1,19 +1,13 @@
 import './style.css'
 import DataSelection from './components/DataSelection'
 import ExperiencesList from './components/ExperiencesList'
-import ReserverData from './components/ReserverData/ReserverData'
-import { useState } from 'react'
 
 const Prenota = () => {
-  const [showUserData, setShowUserData] = useState(false)
-
-  return (<>
+  return (
     <div className='container'>
-      <DataSelection setShowUserData={setShowUserData}/>
+      <DataSelection />
       <ExperiencesList />
     </div>
-    {showUserData && <ReserverData/>}
-  </>
   )
 }
 

@@ -11,7 +11,7 @@ const ExperiencesList = () => {
   const state = useContext(ReservationContext)
 
   const handleClick = (expId: number) => {
-    if(dispatch) dispatch({ type: Actions.UPDATE_EXP_ID, payload: expId })
+    if(dispatch) dispatch({ type: Actions.UPDATE_RESERVATION, payload: {expId} })
   }
 
   return (

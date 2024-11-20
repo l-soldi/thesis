@@ -8,7 +8,7 @@ type Props = {
 }
 
 const List = ({handleSelected }: Props) => {
-    const data =useLoaderData() as FullReservation[]
+    const data = useLoaderData() as FullReservation[]
 
     return (
     <div className="detail">

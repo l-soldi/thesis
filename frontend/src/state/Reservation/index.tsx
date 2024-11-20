@@ -20,7 +20,7 @@ export const initialReservation: Reservation = {
   email: '',
   phone: '',
   date: formatDate(new Date()),
-  expId: 0,
+  expId: 1,
   peopleNum: 1
 };
 

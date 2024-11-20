@@ -74,6 +74,11 @@ label {
   font-weight: 550;
 }
 
+.suggestion {
+  font-size: 14px;
+  color: var(--input-suggestion-color);
+}
+
 input {
   font-size: 16px;
   border: 2px solid var(--input-border);
@@ -84,19 +89,16 @@ input {
     outline: 3px solid var(--input-focus);
   }
 
-  /* Cambia stile in base al sibling successivo */
-  &:has(+.error-message) {
+  &:user-invalid {
     border-color:var(--input-error-border);
-    outline-color: var(--input-error-border)
+    outline-color: var(--input-error-border);
+
+    & + .suggestion {
+      color: var(--input-error-color);
+    }
   }
 }
 
-.error-message {
-  display: block;
-  color: var(--input-error-color);
-  font-size: 14px;
-  margin-top: 1px;
-}
 /*#endregion input*/
 
 /*#region container*/
@@ -136,6 +138,10 @@ form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  >h3 {
+    flex-basis: 100%;
+  }
 
   >div {
     padding: 0 var(--spacing-md);

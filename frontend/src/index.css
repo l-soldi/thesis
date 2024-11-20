@@ -13,6 +13,7 @@
   --brown: #342f2e;
   --teal: #146461;
   --gray: #BDBDBD;
+  --dark-gray: #4F4F4F;
 
   --primary-text-color: var(--teal);
   --primary-bg: var(--white);
@@ -42,6 +43,7 @@
   --input-border: var(--teal);
   --input-error-color: #C1121F;
   --input-error-border: #BA181B;
+  --input-suggestion-color: var(--dark-gray);
 
   /* card */
   --card-color: var(--brown);

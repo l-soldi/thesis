@@ -1,7 +1,9 @@
 export enum Actions {
+    UPDATE_RESERVATION = 'UPDATE_RESERVATION',
+    UPDATE_USER = 'UPDATE_USER',
+    UPDATE_EXP = 'UPDATE_EXP',
     UPDATE_DATE = 'UPDATE_DATE',
     UPDATE_PEOPLE = 'UPDATE_PEOPLE',
-    UPDATE_USER = 'UPDATE_USER',
     UPDATE_EXP_ID = 'UPDATE_EXP_ID',
     UPDATE_NAME = 'UPDATE_NAME',
     UPDATE_LASTNAME = 'UPDATE_LASTNAME',
@@ -10,9 +12,12 @@ export enum Actions {
     RESET = 'RESET',
   }
 
-export enum UserFields {
+export enum Fields {
     NAME = 'name',
     LASTNAME = 'lastname',
     EMAIL = 'email',
-    PHONE = 'phone'
+    PHONE = 'phone',
+    PEOPLENUM = 'peopleNum',
+    DATE = 'date',
+    EXP_ID = 'expId',
 }

@@ -4,18 +4,19 @@ import BodyEdit from './BodyEdit';
 import BodyDelete from './BodyDelete';
 import './style.css'
 import { ModalContext } from '../../state/Modal';
+import { FullReservation } from '../../api/types';
 
 type Props = {
     type: ModalTypes | null;
     cta?: () => Promise<any>;
+    defaultValues?: Partial<FullReservation>
 }
 
-const Modal = ({type, cta}: Props) => {
+const Modal = ({type, cta , defaultValues}: Props) => {
     const {show, closeModal} = useContext(ModalContext)
 
-    const handleOnConfirm = (e: { preventDefault: () => void; }) => {
-        e.preventDefault()
-        cta?.();
+    const handleOnConfirm = (values) => {
+        cta?.(values);
         closeModal();
     }
 
@@ -25,12 +26,12 @@ const Modal = ({type, cta}: Props) => {
         <div className='modal'>
             <button className='close cancel' onClick={closeModal}> x </button>
             <span className='modal-body'>
-                {type === ModalTypes.EDIT && <BodyEdit show={show} />}
+                {type === ModalTypes.EDIT && <BodyEdit show={show} onSubmit={handleOnConfirm} defaultValues={defaultValues} /> }
                 {type === ModalTypes.DELETE && <BodyDelete show={show} />}
             </span>
             <div className='modal-footer'>
                 <button className='cancel' onClick={closeModal}> Annulla </button>
-                <button onClick={handleOnConfirm}> Conferma </button>
+                {type !== ModalTypes.EDIT && <button onClick={handleOnConfirm}> Conferma </button>}
             </div>
         </div>
     </div>

@@ -9,28 +9,16 @@ import Modal from "../../components/Modal"
 
 const DettaglioPrenotazione = () => {
   const data = useLoaderData() as FullReservation
-  const { setFormValues, ...values } = useContext(ModalEditContext)
   const { showModal } = useContext(ModalContext)
   const [modalType, setModalType] = useState<ModalTypes | null>(null)
 
-  const ctaUpdate = useApi(() => updateReservation(data.id, values), `/gestisci/${data.id}`, true)
+  const ctaUpdate = useApi((values) => updateReservation(data.id, values), `/gestisci/${data.id}`, true)
   const ctaDelete = useApi(() => deleteReservation(data.id), `/gestisci`, true)
 
   const handleCTA = (type: ModalTypes) => {
     showModal()
     setModalType(type)
   }
-
-  useEffect(() => {
-    setFormValues({
-      name: data.name,
-      lastname: data.lastname,
-      email: data.email,
-      phone: data.phone,
-      date: data.date,
-      peopleNum: data.peopleNum,
-    })
-  }, [data])
 
   const cta = modalType === ModalTypes.EDIT
     ? ctaUpdate 
@@ -39,7 +27,7 @@ const DettaglioPrenotazione = () => {
       : undefined
 
   return (<>
-    <Modal type={modalType} cta={cta} />
+    <Modal type={modalType} cta={cta} defaultValues={data}/>
     <div className="exp">
       <h3> Dettaglio prenotazione</h3>
       <div>
