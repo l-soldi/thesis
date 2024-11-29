@@ -25,13 +25,14 @@ Requisiti:
 - python3
 - npm
 - node
-- yarn 
+- yarn
 
 Dopo aver clonato la repo:
 
 1. Avvio del backend:
 
 - macOS
+
   ```python
   cd backend
   python3 -m venv venv
@@ -39,7 +40,9 @@ Dopo aver clonato la repo:
   pip3 install -r requirements.txt
   flask run
   ```
+
 - windows
+
   ```python
   cd backend
   python -m venv venv
@@ -52,6 +55,7 @@ Dopo aver clonato la repo:
 2. Avvio del frontend:
 
 - macOS & windows
+
   ```npm
   cd frontend
   yarn install
