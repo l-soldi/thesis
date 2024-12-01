@@ -2,6 +2,39 @@ from app import app, db
 from flask import request, jsonify
 from models.reservation import Reservation
 from models.experience import Experience
+from models.user import User
+
+# Login
+@app.route('/api/login', methods=['GET'])
+def login():
+  email = request.json['email']
+  password = request.json['password']
+  user = User.get_by_email(email)  # Recupera l'utente dal database
+  if user and User.check_password(1,password):
+    return jsonify({"message": "Login effettuato con successo"}), 200
+  else:
+    return jsonify({"error": "Email o password invalide"}), 401
+
+# Registra l'utente
+@app.route('/api/register', methods=['GET', 'POST'])
+def register():
+  data = request.json
+
+  # Verifica che i dati mandatori siano presenti nella request ricevuta. 
+  required_fields = ["name","lastname","email","password"]
+  for field in required_fields:
+    if field not in data or not data.get(field):
+      return jsonify({"error":f'Manca campo obbligatorio: {field}'}), 400 # Ritorna in risposta 400 Bad Request
+
+  user = User.get_by_email(data.get("email"))  # Recupera l'utente dal database
+  if user is None:
+      user = User(name=data.get("name"), lastname=data.get("lastname"), email=data.get("email"), password=data.get("password"))
+      db.session.add(user)
+      db.session.commit()
+  else:
+    return jsonify({"error": "Utente già presente"}), 400
+  return jsonify(user.to_json()), 201
+
 
 # Recupera la lista di tutte le prenotazioni presenti a DB.
 @app.route("/api/reservations",methods=["GET"])

@@ -11,6 +11,11 @@ class Reservation(db.Model):
   exp_id = db.Column(db.Integer, nullable=False)
   people_num = db.Column(db.Integer, nullable=False)
 
+  @staticmethod
+  def get():
+    return Reservation.query.all()
+
+  # Restituisce una rappresentazione testuale dell'oggetto
   def to_json(self):
     return {
       "id":self.id,
