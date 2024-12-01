@@ -1,6 +1,39 @@
 import { BASE_URL } from "./endpoint";
 import { Experience, FullReservation, Reservation } from "./types";
 
+// API login
+export const login = async (email: string, password: string) => {
+    console.log(email, password)
+    const response = await fetch(`${BASE_URL}/login`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+    })
+
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}, ${response.statusText}`);
+    }
+    return response.json()
+}
+
+// API registrazione
+export const register = async (name:string, lastname: string, email: string, password: string) => {
+    const response = await fetch(`${BASE_URL}/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, lastname, email, password })
+    })
+
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}, ${response.statusText}`);
+    }
+    return response.json()
+}
+
 // API per la creazione di una prenotazione
 export const createReservations = async (values: Omit<Reservation, "id">) => {
     const response = await fetch(`${BASE_URL}/reservations`, {

@@ -16,6 +16,7 @@ export enum Fields {
     NAME = 'name',
     LASTNAME = 'lastname',
     EMAIL = 'email',
+    PASSWORD = 'password',
     PHONE = 'phone',
     PEOPLENUM = 'peopleNum',
     DATE = 'date',

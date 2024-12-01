@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { ToastContext } from "../../state/Toast";
 import { useNavigate, useRevalidator } from "react-router-dom";
 
-export const useApi = (serviceToCall: (args) => Promise<T>, navigateTo?:string, revalidate=false) => {
+export const useApi = (serviceToCall: (...args) => Promise<T>, navigateTo?:string, revalidate=false) => {
   const { showSuccessToast, showErrorToast } = useContext(ToastContext);
   const navigate = useNavigate();
   const revalidator = useRevalidator()
 
-  const callback = async (values: any) => {
+  const callback = async (...values: any) => {
     serviceToCall(values)
       .then((res: string) => {
         // Se la chiamata va a buon fine, mostra un toast di successo

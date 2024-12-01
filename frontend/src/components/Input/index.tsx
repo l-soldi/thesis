@@ -10,7 +10,8 @@ const suggestions = [
     {type: "email", msg: "Inserisci un'email valida"},
     {type: "tel", msg: "Inserisci un numero di telefono valido, avente almeno 8 caratteri"},
     {type: "date", msg: "Inserisci una data valida"},
-    {type: "number", msg: "Inserisci solo cifre numeriche"}
+    {type: "number", msg: "Inserisci solo cifre numeriche"},
+    {type: "password", msg: "Inserisci una password valida"}
 ]
 
 const Input: React.FC<InputProps> = ({ type, label, ...props }) => {
