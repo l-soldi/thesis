@@ -5,7 +5,7 @@ import useToast from "../../components/hooks/useToast";
 const initialState = {
   show: false,
   showSuccessToast: () => {},
-  showErrorToast: () => {},
+  showErrorToast: (msg?:string) => {},
   closeToast: () => {}
 }
 

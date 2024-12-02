@@ -45,7 +45,7 @@ const Form = ({ onSubmit, defaultValues }:Props) => {
           size={10}
           required
         />
-        <h3> I tuoi dati </h3>
+        <h3> Prenotazione a nome di </h3>
           <Input
             type='text'
             required

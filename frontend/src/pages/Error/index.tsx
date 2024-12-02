@@ -6,14 +6,14 @@ const ErrorPage: React.FC = () => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        navigate("/");
+        navigate(-1);
     };
 
     return (
         <div className="error-page">
             <h1>404 - Pagina Non Trovata</h1>
             <p>Spiacenti, la pagina che stai cercando non esiste.</p>
-            <button onClick={handleGoBack}>Torna alla Home</button>
+            <button onClick={handleGoBack}>&lt; Torna indietro</button>
         </div>
     );
 };
