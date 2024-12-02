@@ -4,6 +4,7 @@ import { useApi } from '../../api/hooks/useApi';
 import { login, register } from '../../api/methods';
 import { ToastContext } from '../../state/Toast';
 import { Fields } from '../../state/Reservation/enums';
+import './style.css'
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
@@ -15,7 +16,7 @@ const Login = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const values = Object.fromEntries(formData.entries());
-        const hasEmptyValues = Object.values(values).some((val: string) => val === '');
+        const hasEmptyValues = Object.values(values).some((val: FormDataEntryValue) => val === '');
         if(hasEmptyValues) {
             showErrorToast(); 
             return;
@@ -30,7 +31,7 @@ const Login = () => {
     return (
         <div>
             <h2>{isRegister? "Registrati" : "Accedi"}</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={`input-${isRegister ? "reg" : "no-reg"}`}>
                 {isRegister && <>
                     <Input label="Nome" name={Fields.NAME} type="text" defaultValue="Mario" required />
                     <Input label="Cognome" name={Fields.LASTNAME} type="text" defaultValue="Rossi" required />
@@ -38,13 +39,15 @@ const Login = () => {
                 }
                 <Input label="Email" name={Fields.EMAIL} type="email" defaultValue="email@email.com" required />
                 <Input label="Password" name={Fields.PASSWORD} type="password" defaultValue="password" required />
-                {isRegister && <button onClick={() => setIsRegister(false)}>Indietro</button>}
-                <button type="submit">{isRegister ? "Registrati" : "Login"}</button>
-                {!isRegister && <>
-                    <p> Non hai un account? </p>
-                    <button id="register" onClick={()=> {setIsRegister(true)}} >Registrati coi dati inseriti</button>
-                </>
-                }
+                <span className="actions">
+                    {isRegister && <button onClick={() => setIsRegister(false)}> Indietro </button>}
+                    <button type="submit" id="maincta">{isRegister ? "Registrati" : "Login"}</button>
+                    {!isRegister && <>
+                        <p> Non hai un account? </p>
+                        <button id="register" onClick={()=> {setIsRegister(true)}}> Registrati coi dati inseriti </button>
+                    </>
+                    }
+                </span>
             </form>
         </div>
     );
