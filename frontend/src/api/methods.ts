@@ -1,11 +1,11 @@
+import { writeUserIdToLocalStorage } from "../localStorage/utils";
 import { BASE_URL } from "./endpoint";
 import { Experience, FullReservation, Reservation } from "./types";
 
 // API login
 export const login = async (email: string, password: string) => {
-    console.log(email, password)
     const response = await fetch(`${BASE_URL}/login`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -15,7 +15,10 @@ export const login = async (email: string, password: string) => {
     if (!response.ok) {
         throw new Error(`Response status: ${response.status}, ${response.statusText}`);
     }
-    return response.json()
+
+    const jsonResp = await response.json()
+    writeUserIdToLocalStorage(jsonResp.id)
+    return jsonResp
 }
 
 // API registrazione
@@ -31,7 +34,10 @@ export const register = async (name:string, lastname: string, email: string, pas
     if (!response.ok) {
         throw new Error(`Response status: ${response.status}, ${response.statusText}`);
     }
-    return response.json()
+
+    const jsonResp = await response.json()
+    writeUserIdToLocalStorage(jsonResp.id)
+    return jsonResp
 }
 
 // API per la creazione di una prenotazione

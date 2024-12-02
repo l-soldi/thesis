@@ -20,7 +20,7 @@ export const useApi = (serviceToCall: (...args) => Promise<T>, navigateTo?:strin
           navigate(_navigateTo, { replace: true })};
       })
       // Se la chiamata non va a buon fine, mostra un toast di errore
-      .catch(showErrorToast);
+      .catch(err => showErrorToast(err.message));
   }
 
   // Ritorna la funzione di callback
