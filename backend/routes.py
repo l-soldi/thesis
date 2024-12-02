@@ -5,13 +5,14 @@ from models.experience import Experience
 from models.user import User
 
 # Login
-@app.route('/api/login', methods=['GET'])
+@app.route('/api/login', methods=['POST'])
 def login():
   email = request.json['email']
   password = request.json['password']
   user = User.get_by_email(email)  # Recupera l'utente dal database
+
   if user and User.check_password(1,password):
-    return jsonify({"message": "Login effettuato con successo"}), 200
+    return jsonify(user.to_json()), 200
   else:
     return jsonify({"error": "Email o password invalide"}), 401
 
@@ -20,7 +21,7 @@ def login():
 def register():
   data = request.json
 
-  # Verifica che i dati mandatori siano presenti nella request ricevuta. 
+  # Verifica che i dati obbligatori siano presenti nella request ricevuta.
   required_fields = ["name","lastname","email","password"]
   for field in required_fields:
     if field not in data or not data.get(field):
@@ -67,7 +68,7 @@ def create_reservation():
   try:
     data = request.json
 
-    # Verifica che i dati mandatori siano presenti nella request ricevuta. 
+    # Verifica che i dati obbligatori siano presenti nella request ricevuta. 
     required_fields = ["name","lastname","email","phone","date","expId","peopleNum"]
     for field in required_fields:
       if field not in data or not data.get(field):
