@@ -25,8 +25,8 @@ export default () => {
     showToast({ variant: ToastVariants.SUCCESS, message: 'Operazione avvenuta con successo.' });
   }
 
-  const showErrorToast = () => {
-    showToast({ variant: ToastVariants.ERROR, message: 'Qualcosa e` andato storto, riprova.' });
+  const showErrorToast = (msg?:string) => {
+    showToast({ variant: ToastVariants.ERROR, message: msg ?? 'Qualcosa e` andato storto, riprova.' });
   }
 
   return { show, variant, message, showErrorToast, showSuccessToast, closeToast };

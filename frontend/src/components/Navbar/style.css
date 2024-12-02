@@ -17,6 +17,7 @@
 
 /* Navbar links */
 .navbar-menu {
+    width: 100%;
     display: flex;
     gap: var(--spacing-md);
     padding: var(--spacing-sm) 0 0;
@@ -32,15 +33,21 @@ a.selected {
     border-radius: var(--border-radius);
 }
 
-.navbar-item > a {
-    &:hover {
-        color: var(--white);
-        text-decoration: underline;
+.navbar-item {
+    &:last-child {
+        margin-left: auto;
     }
 
-    &.selected:hover {
-        text-decoration: none;
-        cursor: default;
-        color: var(--teal);
+    > a {
+        &:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        &.selected:hover {
+            text-decoration: none;
+            cursor: default;
+            color: var(--teal);
+        }
     }
 }
