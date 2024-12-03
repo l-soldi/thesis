@@ -1,0 +1,22 @@
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.cell {
+    text-align: left;
+    text-overflow: ellipsis;
+    padding: 0 var(--spacing-sm);
+
+    &:nth-last-child(3), &:nth-last-child(4) {
+        text-align: right;
+    }
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--color-white);
+}
