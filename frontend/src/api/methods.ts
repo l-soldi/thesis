@@ -72,22 +72,6 @@ export const getReservations = async () : Promise<FullReservation[]> => {
     return response.json()
 }
 
-// API per ottenere una prenotazione specifica
-export const getReservation = async (id: number) : Promise<FullReservation | null> => {
-    const response = await fetch(`${BASE_URL}/reservations/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-
-    if (!response.ok) {
-        throw new Error(`Response status: ${response.status}, ${response.statusText}`);
-    }
-    return response.json()
-
-}
-
 // API per l'eliminazione di una prenotazione
 export const deleteReservation = async (id: number) => {
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
