@@ -3,6 +3,7 @@ from flask import request, jsonify
 from models.reservation import Reservation
 from models.experience import Experience
 from models.user import User
+from models.resvshistory import Resvshistory
 
 # Login
 @app.route('/api/login', methods=['POST'])
@@ -11,13 +12,13 @@ def login():
   password = request.json['password']
   user = User.get_by_email(email)  # Recupera l'utente dal database
 
-  if user and User.check_password(1,password):
+  if user and User.check_password(user.id, password):
     return jsonify(user.to_json()), 200
   else:
     return jsonify({"error": "Email o password invalide"}), 401
 
 # Registra l'utente
-@app.route('/api/register', methods=['GET', 'POST'])
+@app.route('/api/register', methods=['POST'])
 def register():
   data = request.json
 
@@ -38,8 +39,12 @@ def register():
 
 
 # Recupera la lista di tutte le prenotazioni presenti a DB.
-@app.route("/api/reservations",methods=["GET"])
+@app.route("/api/reservations", methods=["POST"])
 def get_reservations():
+  data = request.json
+  user_id = data.get("userId")
+  resvs_history = Resvshistory.get_reservations_by_user(user_id)
+  print("getResv", resvs_history)
   reservations = Reservation.query.all() 
   result = [reservation.to_json() for reservation in reservations]
 
@@ -49,7 +54,7 @@ def get_reservations():
   return jsonify(result)
 
 # Dato un identificativo di prenotazione recupera a DB la stessa e la restituisce, se prensente.
-@app.route("/api/reservations/<int:id>",methods=["GET"])
+@app.route("/api/reservations/<int:id>", methods=["POST"])
 def get_reservation(id):
   reservation = Reservation.query.get(id)
 
@@ -63,12 +68,12 @@ def get_reservation(id):
   return jsonify(result)
 
 # Date le informazioni necessarie, crea una nuova prenotazione salvandola a DB.
-@app.route("/api/reservations",methods=["POST"])
+@app.route("/api/reservations", methods=["PUT"])
 def create_reservation():
   try:
     data = request.json
 
-    # Verifica che i dati obbligatori siano presenti nella request ricevuta. 
+    # Verifica che i dati obbligatori siano presenti nella request ricevuta.
     required_fields = ["name","lastname","email","phone","date","expId","peopleNum"]
     for field in required_fields:
       if field not in data or not data.get(field):
@@ -82,9 +87,10 @@ def create_reservation():
     date = data.get("date")
     exp_id = data.get("expId")
     people_num = data.get("peopleNum")
+    user_id = data.get("userId")
 
-    # Crea la nuova prenotazione 
-    new_reservation = Reservation(name=name, lastname=lastname, email=email, phone=phone, date=date, exp_id=exp_id, people_num=people_num)
+    # Crea la nuova prenotazione
+    new_reservation = Reservation(name=name, lastname=lastname, email=email, phone=phone, date=date, exp_id=exp_id, people_num=people_num, user_id=user_id)
 
     # Salva a DB la nuova prenotazione
     db.session.add(new_reservation) 
@@ -100,7 +106,7 @@ def create_reservation():
     return jsonify({"error":str(e)}), 500
 
 # Dato un identificativo di prenotazione elimina a DB la stessa, se presente. 
-@app.route("/api/reservations/<int:id>",methods=["DELETE"])
+@app.route("/api/reservations/<int:id>", methods=["DELETE"])
 def delete_reservation(id):
   try:
     # Recupera la prenotazione con dato id da DB
@@ -119,7 +125,7 @@ def delete_reservation(id):
     return jsonify({"error":str(e)}),500
 
 # Dato un identificativo di prenotazione aggiorna le informazioni presenti a DB della stessa, se presente.
-@app.route("/api/reservations/<int:id>",methods=["PATCH"])
+@app.route("/api/reservations/<int:id>", methods=["PATCH"])
 def update_reservation(id):
   try:
     # Recupera la prenotazione con dato id da DB

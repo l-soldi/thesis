@@ -10,6 +10,7 @@ class Reservation(db.Model):
   date = db.Column(db.String(10), nullable=False)
   exp_id = db.Column(db.Integer, nullable=False)
   people_num = db.Column(db.Integer, nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
   @staticmethod
   def get():
@@ -25,5 +26,6 @@ class Reservation(db.Model):
       "phone":self.phone,
       "date":self.date,
       "expId":self.exp_id,
-      "peopleNum":self.people_num
+      "peopleNum":self.people_num,
+      "userId":self.user_id
     }
