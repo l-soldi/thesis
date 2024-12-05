@@ -8,8 +8,8 @@ const Navbar = () => {
     const id = getUserIdFromLocalStorage();
 
     const routes = useMemo(() => [
-        { path: ["/", "/prenota"], href: "/prenota", label: "Prenota" },
-        { path: ["/gestisci","/gestisci/:id"], href: "/gestisci", label: "Gestisci" },
+        { path: ["/prenota"], href: "/prenota", label: "Prenota" },
+        { path: ["/gestisci"], href: "/gestisci", label: "Gestisci" },
         ...(id ? [{ path: ["/login"], href: "/login", label: "Logout" }] : [])
     ], [id])
 

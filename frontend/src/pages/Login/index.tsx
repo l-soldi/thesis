@@ -9,8 +9,8 @@ import './style.css'
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
     const { showErrorToast } = useContext(ToastContext);
-    const loginCta = useApi((data) => login(...data), '/prenota')
-    const registerCta = useApi((data) => register(...data), '/prenota')
+    const loginCta = useApi((data) => login(...data), '/prenota', true, false)
+    const registerCta = useApi((data) => register(...data), '/prenota', true, false)
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

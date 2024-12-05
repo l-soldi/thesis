@@ -4,10 +4,11 @@ import { Reservation } from '../../../api/types'
 import Form from '../../../components/Form'
 
 const DataSelection = () => {
-  const ctaCreate = useApi((values) => createReservations(values), "/gestisci/:id", true)
+  const ctaCreate = useApi((values) => createReservations(values), "/gestisci", true)
 
   const createReservation = (values: Omit<Reservation, "id">) => {
-      ctaCreate({...values})
+    console.log(values)
+      ctaCreate(values)
   }
 
   return (
