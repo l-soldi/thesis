@@ -4,6 +4,8 @@ from models.reservation import Reservation
 from models.experience import Experience
 from models.user import User
 from models.resvshistory import Resvshistory
+from utils.errors import Errors
+from utils.utils import get_total_price
 
 # Login
 @app.route('/api/login', methods=['POST'])
@@ -15,7 +17,7 @@ def login():
   if user and User.check_password(user.id, password):
     return jsonify(user.to_json()), 200
   else:
-    return jsonify({"error": "Email o password invalide"}), 401
+    return jsonify({"error": Errors.INVALID_EMAIL_OR_PWD}), 401
 
 # Registra l'utente
 @app.route('/api/register', methods=['POST'])
@@ -34,38 +36,21 @@ def register():
       db.session.add(user)
       db.session.commit()
   else:
-    return jsonify({"error": "Utente già presente"}), 400
+    return jsonify({"error": Errors.USER_ALREADY_EXISTS}), 400
   return jsonify(user.to_json()), 201
-
 
 # Recupera la lista di tutte le prenotazioni presenti a DB.
 @app.route("/api/reservations", methods=["POST"])
 def get_reservations():
   data = request.json
   user_id = data.get("userId")
-  resvs_history = Resvshistory.get_reservations_by_user(user_id)
-  print("getResv", resvs_history)
-  reservations = Reservation.query.all() 
-  result = [reservation.to_json() for reservation in reservations]
 
-  for reservation in result:
+  user_resvs_history = Resvshistory.get_reservations_by_user(user_id)
+
+  for reservation in user_resvs_history:
     reservation['totalPrice'] = get_total_price(reservation)
-    reservation['experience'] = Experience.query.get(reservation['expId']).to_json()
-  return jsonify(result)
-
-# Dato un identificativo di prenotazione recupera a DB la stessa e la restituisce, se prensente.
-@app.route("/api/reservations/<int:id>", methods=["POST"])
-def get_reservation(id):
-  reservation = Reservation.query.get(id)
-
-  # Ritorna error 404 se la prenotazione non è stata trovata
-  if reservation is None:
-      return jsonify({"error":"Prenotazione non trovata"}), 404
-
-  result = reservation.to_json()
-  result['totalPrice'] = get_total_price(result)
-  result['experience'] = Experience.query.get(result['expId']).to_json()
-  return jsonify(result)
+    reservation['experience'] = Experience.get_by_exp_id(reservation['expId'])[0].to_json()
+  return jsonify(user_resvs_history)
 
 # Date le informazioni necessarie, crea una nuova prenotazione salvandola a DB.
 @app.route("/api/reservations", methods=["PUT"])
@@ -110,28 +95,28 @@ def create_reservation():
 def delete_reservation(id):
   try:
     # Recupera la prenotazione con dato id da DB
-    reservation = Reservation.query.get(id)
+    reservation = Reservation.get_by_id(id)
     if reservation is None:
-      return jsonify({"error":"Prenotazione non trovata"}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
+      return jsonify({"error":Errors.RES_NOT_FOUND}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
 
     # Elimina la entry a DB della prenotazione
     db.session.delete(reservation)
     db.session.commit()
     return jsonify({"msg":"Prenotazione eliminata"}), 200 # In caso di successo restituisce 200 con un messaggio che indica che la Prenotazione è stata eliminata correttamente.
   # Ritorna 500 Internal Error in caso di un errore di qualsiasi tipo durante l'esecuzione della chiamata.
-  except Exception as e:
+  except Exception:
     # In caso di errore riporta il DB in uno stato consistente.
     db.session.rollback()
-    return jsonify({"error":str(e)}),500
+    return jsonify({"error": Errors.GENERAL_ERROR }),500
 
 # Dato un identificativo di prenotazione aggiorna le informazioni presenti a DB della stessa, se presente.
 @app.route("/api/reservations/<int:id>", methods=["PATCH"])
 def update_reservation(id):
   try:
     # Recupera la prenotazione con dato id da DB
-    reservation = Reservation.query.get(id)
+    reservation = Reservation.get_by_id(id)
     if reservation is None:
-      return jsonify({"error":"Prenotazione non trovata"}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
+      return jsonify({"error": Errors.RES_NOT_FOUND}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
 
     data = request.json
 
@@ -145,20 +130,14 @@ def update_reservation(id):
     db.session.commit()
     return jsonify(reservation.to_json()),200 # In caso di successo restituisce 200 con un messaggio che indica che la prenotazione è stata aggiornata correttamente.
   # Ritorna 500 Internal Error in caso di un errore di qualsiasi tipo durante l'esecuzione della chiamata.
-  except Exception as e:
+  except Exception:
     # In caso di errore riporta il DB in uno stato consistente.
     db.session.rollback()
-    return jsonify({"error":str(e)}),500
+    return jsonify({"error": Errors.GENERAL_ERROR }),500
 
 # Recupera la lista di tutte le esperienze presenti a DB
 @app.route("/api/experiences",methods=["GET"])
 def get_experiences():
-  experiences = Experience.query.all() 
+  experiences = Experience.get_all() 
   result = [experience.to_json() for experience in experiences]
   return jsonify(result)
-
-# Funzione di utilita` per ottenere il prezzo totale
-def get_total_price(reservation):
-  experience = Experience.query.get(reservation['expId'])
-  total_price = experience.price * reservation['peopleNum'] if experience else None
-  return total_price

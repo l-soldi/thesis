@@ -13,8 +13,12 @@ class Reservation(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
   @staticmethod
-  def get():
-    return Reservation.query.all()
+  def get_by_id(id: int):
+    return Reservation.query.filter_by(id=id).all()
+
+  @staticmethod
+  def get_by_user_id(user_id: int):
+    return Reservation.query.filter_by(user_id=user_id).all()
 
   # Restituisce una rappresentazione testuale dell'oggetto
   def to_json(self):

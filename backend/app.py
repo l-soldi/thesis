@@ -15,7 +15,8 @@ def create_db(app):
   app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///reservations.db"
   app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
   app.config["SQLALCHEMY_BINDS"] = {
-    "experiences": "sqlite:///experiences.db"
+    "experiences": "sqlite:///experiences.db",
+    "users": "sqlite:///users.db",
   }
   return SQLAlchemy(app)
 

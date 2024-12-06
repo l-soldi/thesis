@@ -8,6 +8,14 @@ class Experience(db.Model):
   price = db.Column(db.Float(2), nullable=False)
   imageUrl = db.Column(db.String(100), nullable=False)
 
+  @staticmethod
+  def get_by_exp_id(exp_id: int):
+    return Experience.query.filter_by(id=exp_id).all()
+  
+  @staticmethod
+  def get_all():
+    return Experience.query.all()
+
   def to_json(self):
     return {
       "id":self.id,
