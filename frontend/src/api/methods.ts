@@ -63,11 +63,11 @@ export const createReservations = async (values: Omit<Reservation, "id">[]) => {
 }
 
 // API per ottenere tutte le prenotazioni
-export const getReservations = async () : Promise<FullReservation[]> => {
+export const getReservations = async (page=1, perPage=5)  : Promise<FullReservation[]> => {
     const userId = getUserIdFromLocalStorage()
     const body = { userId: userId }
 
-    const response = await fetch(`${BASE_URL}/reservations`, {
+    const response = await fetch(`${BASE_URL}/reservations?page=${page}&perPage=${perPage}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

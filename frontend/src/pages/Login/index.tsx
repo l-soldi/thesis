@@ -5,10 +5,12 @@ import { login, register } from '../../api/methods';
 import { ToastContext } from '../../state/Toast';
 import { Fields } from '../../state/Reservation/enums';
 import './style.css'
+import { UserContext } from '../../state/User';
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
     const { showErrorToast } = useContext(ToastContext);
+    const { setUserId } = useContext(UserContext);
     const loginCta = useApi((data) => login(...data), '/prenota', true, false)
     const registerCta = useApi((data) => register(...data), '/prenota', true, false)
 
@@ -20,11 +22,12 @@ const Login = () => {
         if(hasEmptyValues) {
             showErrorToast(); 
             return;
-        }
-        if (isRegister) {
-            registerCta(values.name, values.lastname, values.email, values.password)
         } else {
-            loginCta(values.email, values.password);
+            if (isRegister) {
+                registerCta(values.name, values.lastname, values.email, values.password)
+            } else {
+                loginCta(values.email, values.password);
+            }
         }
     }
 

@@ -25,7 +25,13 @@ export const router = createBrowserRouter([
     {
       path: "/gestisci",
       element: <Gestisci />,
-      loader: getReservations, // Carica le prenotazioni al caricamento della pagina
+      loader:  async ({ request }) => {
+          const url = new URL(request.url);
+          const page = (url.searchParams.get("page")) ? parseInt(url.searchParams.get("page")!) : 1;
+          const itemsPerPage = url.searchParams.get("itemsPerPage") ? parseInt(url.searchParams.get("itemsPerPage")!) : 5;
+
+          return await getReservations(page, itemsPerPage);
+        }, // Carica le prenotazioni al caricamento della pagina
       errorElement: <ErrorPage />,
     },
   ]);

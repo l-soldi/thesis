@@ -7,12 +7,11 @@ const Gestisci = () => {
   const data = useLoaderData() as Reservation[]
   const { id } = useParams()
 
-
   const showOutlet = !!id || !!data.length
 
   return (<>
     <h2>Le tue prenotazioni </h2>
-    <div className='container'>
+    <div>
       <List />
       {showOutlet && <Outlet />}
     </div>
