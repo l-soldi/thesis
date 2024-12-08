@@ -1,5 +1,5 @@
 import  { createContext, ReactNode } from "react";
-import Toast from "../../components/Toast";
+import Toast from "../../components/Toast/Toast";
 import useToast from "../../components/hooks/useToast";
 
 const initialState = {

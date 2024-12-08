@@ -1,5 +1,5 @@
 import { ModalProps } from '../types';
-import Form from '../../Form';
+import Form from '../../Form/Form';
 import { FullReservation } from '../../../api/types';
 
 type Props = ModalProps & {

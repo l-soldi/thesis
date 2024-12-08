@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Input from '../Input'
+import Input from '../Input/Input'
 import { Fields } from '../../state/Reservation/enums'
 import { formatDate } from '../../utils'
 import { regexEmail, regexName, regexPhone } from '../Input/constants/regex'
