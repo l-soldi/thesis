@@ -45,11 +45,17 @@ def get_reservations():
   data = request.json
   user_id = data.get("userId")
 
+  page = data.get("page") or 1
+  per_page = data.get("perPage") or 5
+
   user_resvs_history = Resvshistory.get_reservations_by_user(user_id)
+
+  user_resvs_history = Resvshistory.paginate_reservations(user_resvs_history, page, per_page)
 
   for reservation in user_resvs_history:
     reservation['totalPrice'] = get_total_price(reservation)
     reservation['experience'] = Experience.get_by_exp_id(reservation['expId'])[0].to_json()
+  ## TODO: aggiungere totalItems, mettere user_resvs_history in un oggetto con chiave "items"
   return jsonify(user_resvs_history)
 
 # Date le informazioni necessarie, crea una nuova prenotazione salvandola a DB.
