@@ -147,3 +147,9 @@ def get_experiences():
   experiences = Experience.get_all() 
   result = [experience.to_json() for experience in experiences]
   return jsonify(result)
+
+@app.route("/api/users",methods=["GET"])
+def get_users():
+  users = User.get_all()
+  result = [user.to_json() for user in users]
+  return jsonify(result)

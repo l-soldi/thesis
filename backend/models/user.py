@@ -22,6 +22,10 @@ class User(db.Model):
         db.session.add(new_user)
         db.session.commit()
         return new_user
+    
+    @staticmethod
+    def get_all():
+        return User.query.all()
 
 # Ritorna l'utente con l'id specificato
     @staticmethod
@@ -43,5 +47,6 @@ class User(db.Model):
             "id":self.id,
             "name":self.name,
             "lastname":self.lastname,
-            "email":self.email
+            "email":self.email,
+            "password":self.password
         }
