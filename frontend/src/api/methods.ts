@@ -125,3 +125,17 @@ export const getExperiences = async () : Promise<Experience[]> => {
     }
     return response.json()
 }
+
+export const getUsers = async () => {
+    const response = await fetch(`${BASE_URL}/users`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+
+    if (!response.ok) {
+        throw new Error(`Response status: ${response.status}, ${response.statusText}`);
+    }
+    return response.json()
+}

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { getExperiences, getReservations } from "../api/methods";
+import { getExperiences, getReservations, getUsers } from "../api/methods";
 import Login from "../pages/Login";
 import ErrorPage from "../pages/Error";
 import Prenota from "../pages/Prenota";
@@ -15,6 +15,7 @@ export const router = createBrowserRouter([
       path: "/login",
       element: <Login />,
       errorElement: <ErrorPage />,
+      loader: getUsers // Carica gli utenti al caricamento della pagina
     },
     {
       path: "/prenota",

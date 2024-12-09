@@ -6,11 +6,15 @@ import { ToastContext } from '../../state/Toast';
 import { Fields } from '../../state/Reservation/enums';
 import './style.css'
 import { UserContext } from '../../state/User';
+import { useLoaderData } from 'react-router-dom';
 
 const Login = () => {
+    const data = useLoaderData()
     const [isRegister, setIsRegister] = useState(false);
     const { showErrorToast } = useContext(ToastContext);
+
     const { setUserId } = useContext(UserContext);
+
     const loginCta = useApi((data) => login(...data), '/prenota', true, false)
     const registerCta = useApi((data) => register(...data), '/prenota', true, false)
 
@@ -52,6 +56,16 @@ const Login = () => {
                     }
                 </span>
             </form>
+            <div style={{marginTop: "24px"}}>
+                <p> Utenti disponibili: </p>
+                <ul>
+                     {data.map((user: any) => <li key={user.id}>
+                        <p>
+                            {user.email} - {user.password}
+                        </p>
+                    </li>)}
+                </ul>
+            </div>
         </div>
     );
 };
