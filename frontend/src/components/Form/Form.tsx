@@ -15,15 +15,13 @@ const Form = ({ onSubmit, defaultValues }:Props) => {
     const today = formatDate(new Date())
     const state = useContext(ReservationContext)
 
-    const defaultExpId = defaultValues?.expId ?? state?.expId
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       // Previene il comportamento di default del form
       e.preventDefault();
       // Crea un oggetto FormData con i dati del form e lo trasforma in un oggetto
       const formData = new FormData(e.currentTarget as HTMLFormElement);
       const values = Object.fromEntries(formData.entries());
-      onSubmit(values);
+      onSubmit({...values, expId: state?.expId ?? 1});
     }
 
   return (
@@ -88,7 +86,7 @@ const Form = ({ onSubmit, defaultValues }:Props) => {
           />
           <Input type='number'
             label=''
-            defaultValue={defaultExpId ?? 1}
+            defaultValue={state?.expId ?? 1}
             name={Fields.EXP_ID}
             hidden
             required

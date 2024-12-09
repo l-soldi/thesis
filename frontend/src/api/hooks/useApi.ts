@@ -9,15 +9,14 @@ export const useApi = (serviceToCall: (...args) => Promise<any>, navigateTo?:str
 
   const callback = async (...values: any) => {
     serviceToCall(values)
-      .then((res: string) => {
+      .then(() => {
         // Se la chiamata va a buon fine, mostra un toast di successo
         if (showToasts) showSuccessToast();
         // Se è necessaria la revalidazione, utile nei casi di modifica ed eliminazione, eseguila
         if(revalidate) revalidator.revalidate();
         // Se è stato passato un path di reindirizzamento, reindirizza l'utente
         if(navigateTo) {
-          const _navigateTo = navigateTo.replace(':id', res);
-          navigate(_navigateTo, { replace: true })};
+          navigate(navigateTo, { replace: true })};
       })
       // Se la chiamata non va a buon fine, mostra un toast di errore
       .catch(err => showErrorToast(err.message));

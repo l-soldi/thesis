@@ -10,7 +10,7 @@ export type PaginationProps = {
 }
 
 const noop = () => {}
-const pagesOptions = [5, 10, 20, 50]
+const pagesOptions = [2, 5, 10, 20, 50]
 
 const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItemsPerPageChange = noop, totalItems=10 } : PaginationProps) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -44,15 +44,30 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
         >
           Precedente
         </button>
-        {pages.map((page) => (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={currentPage === page ? "" : 'secondary'}
-          >
-            {page}
-          </button>
-        ))}
+          {pages
+            .filter((page) => {
+              // Show the first page, last page, and pages near the current page
+              return (
+                page === 1 ||
+                page === totalPages ||
+                (page >= currentPage - 1 && page <= currentPage + 1)
+              );
+            })
+            .map((page, index, visiblePages) => (
+              <>
+                <button
+                  onClick={() => onPageChange(page)}
+                  className={currentPage === page ? "" : "secondary"}
+                >
+                  {page}
+                </button>
+
+                {/* Add ellipses where needed */}
+                {index < visiblePages.length - 1 && visiblePages[index + 1] > page + 1 && (
+                  <span key={`ellipsis-${index}`}>...</span>
+                )}
+              </>
+    ))}
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}

@@ -7,7 +7,6 @@ const DataSelection = () => {
   const ctaCreate = useApi((values) => createReservations(values), "/gestisci", true)
 
   const createReservation = (values: Omit<Reservation, "id">) => {
-    console.log(values)
       ctaCreate(values)
   }
 

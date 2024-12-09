@@ -1,7 +1,7 @@
 .card-carousel {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 85dvh;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
     gap: var(--spacing-md);
