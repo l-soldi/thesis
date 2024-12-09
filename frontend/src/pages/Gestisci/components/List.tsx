@@ -10,7 +10,7 @@ import { deleteReservation, updateReservation } from '../../../api/methods'
 import { Modal } from '../../../components'
 
 const List = () => {
-    const data = useLoaderData() as FullReservation[]
+    const data = useLoaderData() as FullReservation
     const navigate = useNavigate()
 
     const [defaultValues, setDefaultValues] = useState<FullReservation | null>(null)
@@ -39,12 +39,12 @@ const List = () => {
 
     const onPageChange = (newPage: number) => {
         setPage(newPage)
-        navigate(`/gestisci?page=${newPage}&itemsPerPage=${itemsPerPage}`);
+        navigate(`/gestisci?page=${newPage}&itemsPerPage=${itemsPerPage}`, { replace: true });
     }
 
     const onItemsPerPageChange = (newItemsPerPage: number) => {
         setItemsPerPage(newItemsPerPage)
-        navigate(`/gestisci?page=${page}&itemsPerPage=${newItemsPerPage}`);
+        navigate(`/gestisci?page=${page}&itemsPerPage=${newItemsPerPage}`, { replace: true });
     }
 
     return (<>
@@ -53,15 +53,15 @@ const List = () => {
             !data
                 ? <Empty />
                 : <Table
-                    rows={data.map(({ name, lastname, email, experience: { title }, date, peopleNum, totalPrice }) => [name, lastname, email, title, date, peopleNum.toString(), totalPrice.toString()])}
+                    rows={data.items.map(({ name, lastname, email, experience: { title }, date, peopleNum, totalPrice }) => [name, lastname, email, title, date, peopleNum.toString(), totalPrice.toString()])}
                     columns={columns}
-                    onEdit={(index) => {handleCTA(ModalTypes.EDIT, data[index])}}
-                    onDelete={(index) => {handleCTA(ModalTypes.DELETE, data[index])}} 
+                    onEdit={(index) => {handleCTA(ModalTypes.EDIT, data.items[index])}}
+                    onDelete={(index) => {handleCTA(ModalTypes.DELETE, data.items[index])}} 
                     currentPage={page}
                     itemsPerPage={itemsPerPage}
                     onPageChange={onPageChange}
                     onItemsPerPageChange={onItemsPerPageChange}
-                    totalItems={data.length}
+                    totalItems={data.totalItems}
                 />
         }
     </>
