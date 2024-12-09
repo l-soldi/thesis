@@ -38,6 +38,7 @@ class User(db.Model):
         return User.query.filter_by(email=email).first()
 
 # Verifica se la password fornita corrisponde a quella dell'utente
+    @staticmethod
     def check_password(id: str, password: str) -> bool:
         return User.get(id).password == password
 

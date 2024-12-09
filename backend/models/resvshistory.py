@@ -7,11 +7,10 @@ class Resvshistory:
         user_reservations = [reservation.to_json() for reservation in all_reservations ]
 
         return user_reservations
-    
+
     @staticmethod
     def paginate_reservations(reservations, page, per_page):
         start = (page-1) * per_page
-        print("--------start", start)
         end = start + per_page
-        print("--------end", end)
+
         return reservations[start:end]
