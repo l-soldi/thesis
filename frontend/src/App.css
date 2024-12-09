@@ -23,6 +23,12 @@ button {
   justify-content: space-between;
   align-items: center;
 
+  &.secondary {
+    color: var(--button-secondary-color);
+    background-color: var(--button-secondary-bg);
+    border: var(--button-border);
+  }
+
   &:disabled {
       color: var(--button-disabled-color);
       background-color: var(--button-disabled-bg);

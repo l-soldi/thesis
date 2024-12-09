@@ -18,10 +18,10 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
     const pages = useMemo(() => [...Array(totalPages)].map((_, i) => i + 1), [totalPages]);
 
   return (
-    <div style={{ marginTop: "20px", display: "flex", justifyContent: "space-between" }}>
-      <div style={{ marginBottom: "10px", display: "flex" }}>
-        <label htmlFor="itemsPerPage" style={{ marginRight: "10px" }}>
-          Items per page:
+    <footer>
+      <div className='items-per-page'>
+        <label htmlFor="itemsPerPage">
+          Elementi per pagina:
         </label>
         <select
           id="itemsPerPage"
@@ -36,26 +36,19 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
         </select>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+      <div className="pagination">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          style={{ margin: "0 5px" }}
+          className='secondary'
         >
-          Previous
+          Precedente
         </button>
         {pages.map((page) => (
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            style={{
-              margin: "0 5px",
-              backgroundColor: currentPage === page ? "blue" : "white",
-              color: currentPage === page ? "white" : "black",
-              border: "1px solid black",
-              borderRadius: "4px",
-              padding: "5px 10px",
-            }}
+            className={currentPage === page ? "" : 'secondary'}
           >
             {page}
           </button>
@@ -63,12 +56,11 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          style={{ margin: "0 5px" }}
         >
-          Next
+          Successivo
         </button>
       </div>
-    </div>
+    </footer>
   )
 }
 

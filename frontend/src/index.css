@@ -27,6 +27,9 @@
   --button-primary-color: var(--white);
   --button-primary-bg: var(--teal);
 
+  --button-secondary-color: var(--teal);
+  --button-secondary-bg: var(--white);
+
   --button-cancel-color: var(--burgundy);
   --button-cancel-bg: var(--white);
 
