@@ -63,3 +63,6 @@ Dopo aver clonato la repo:
   ```
 
 3. Applicativo: `localhost:5173/`
+
+4. Utenze utilizzabili per testare
+email@email.com - password
