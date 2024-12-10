@@ -55,7 +55,7 @@ def get_reservations():
 
   for reservation in user_resvs_history_paginated:
     reservation['totalPrice'] = get_total_price(reservation)
-    reservation['experience'] = Experience.get_by_exp_id(reservation['expId'])[0].to_json()
+    reservation['experience'] = Experience.get_by_exp_id(reservation['expId']).to_json()
 
   items = user_resvs_history_paginated
   total_items = len(user_resvs_history)
@@ -135,7 +135,7 @@ def update_reservation(id):
     reservation.email = data.get("email")
     reservation.phone = data.get("phone",)
     reservation.date = data.get("date")
-    reservation.peopleNum = data.get("peopleNum")
+    reservation.people_num = int(data.get("peopleNum"))
 
     db.session.commit()
     return jsonify(reservation.to_json()),200 # In caso di successo restituisce 200 con un messaggio che indica che la prenotazione è stata aggiornata correttamente.
@@ -146,13 +146,13 @@ def update_reservation(id):
     return jsonify({"error": Errors.GENERAL_ERROR }),500
 
 # Recupera la lista di tutte le esperienze presenti a DB
-@app.route("/api/experiences",methods=["GET"])
+@app.route("/api/experiences", methods=["GET"])
 def get_experiences():
-  experiences = Experience.get_all() 
+  experiences = Experience.get_all()
   result = [experience.to_json() for experience in experiences]
   return jsonify(result)
 
-@app.route("/api/users",methods=["GET"])
+@app.route("/api/users", methods=["GET"])
 def get_users():
   users = User.get_all()
   result = [user.to_json() for user in users]

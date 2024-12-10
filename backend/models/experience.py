@@ -10,7 +10,7 @@ class Experience(db.Model):
 
   @staticmethod
   def get_by_exp_id(exp_id: int):
-    return Experience.query.filter_by(id=exp_id).all()
+    return Experience.query.filter_by(id=exp_id).first()
   
   @staticmethod
   def get_all():

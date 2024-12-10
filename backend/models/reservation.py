@@ -14,7 +14,7 @@ class Reservation(db.Model):
 
   @staticmethod
   def get_by_id(id: int):
-    return Reservation.query.filter_by(id=id).all()
+    return Reservation.query.filter_by(id=id).first()
 
   @staticmethod
   def get_by_user_id(user_id: int):
