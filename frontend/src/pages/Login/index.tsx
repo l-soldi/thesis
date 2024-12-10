@@ -5,15 +5,10 @@ import { login, register } from '../../api/methods';
 import { ToastContext } from '../../state/Toast';
 import { Fields } from '../../state/Reservation/enums';
 import './style.css'
-import { UserContext } from '../../state/User';
-import { useLoaderData } from 'react-router-dom';
 
 const Login = () => {
-    const data = useLoaderData()
     const [isRegister, setIsRegister] = useState(false);
     const { showErrorToast } = useContext(ToastContext);
-
-    const { setUserId } = useContext(UserContext);
 
     const loginCta = useApi((data) => login(...data), '/prenota', true, false)
     const registerCta = useApi((data) => register(...data), '/prenota', true, false)
@@ -26,17 +21,16 @@ const Login = () => {
         if(hasEmptyValues) {
             showErrorToast(); 
             return;
+        }
+        if (isRegister) {
+            registerCta(values.name, values.lastname, values.email, values.password)
         } else {
-            if (isRegister) {
-                registerCta(values.name, values.lastname, values.email, values.password)
-            } else {
-                loginCta(values.email, values.password);
-            }
+            loginCta(values.email, values.password);
         }
     }
 
     return (
-        <div>
+        <>
             <h2>{isRegister? "Registrati" : "Accedi"}</h2>
             <form onSubmit={handleSubmit} className={`input-${isRegister ? "reg" : "no-reg"}`}>
                 {isRegister && <>
@@ -56,17 +50,7 @@ const Login = () => {
                     }
                 </span>
             </form>
-            <div style={{marginTop: "24px"}}>
-                <p> Utenti disponibili: </p>
-                <ul>
-                     {data.map((user: any) => <li key={user.id}>
-                        <p>
-                            {user.email} - {user.password}
-                        </p>
-                    </li>)}
-                </ul>
-            </div>
-        </div>
+        </>
     );
 };
 

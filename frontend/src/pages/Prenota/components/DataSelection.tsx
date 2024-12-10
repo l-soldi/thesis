@@ -1,13 +1,17 @@
+import { useContext } from 'react'
 import { useApi } from '../../../api/hooks/useApi'
 import { createReservations } from '../../../api/methods'
 import { Reservation } from '../../../api/types'
 import Form from '../../../components/Form/Form'
+import { ReservationContext } from '../../../state/Reservation'
 
 const DataSelection = () => {
   const ctaCreate = useApi((values) => createReservations(values), "/gestisci", true)
+  const state = useContext(ReservationContext)
 
   const createReservation = (values: Omit<Reservation, "id">) => {
-      ctaCreate(values)
+    const vals = {...values, expId: state?.expId ?? 1}
+    ctaCreate(vals)
   }
 
   return (

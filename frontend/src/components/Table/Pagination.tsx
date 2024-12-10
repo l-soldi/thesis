@@ -46,7 +46,7 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
         </button>
           {pages
             .filter((page) => {
-              // Show the first page, last page, and pages near the current page
+                // Mostra la prima pagina, l'ultima pagina e le pagine vicine alla pagina corrente
               return (
                 page === 1 ||
                 page === totalPages ||
@@ -62,7 +62,7 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
                   {page}
                 </button>
 
-                {/* Add ellipses where needed */}
+                {/* Aggiungi ellissi dove necessario */}
                 {index < visiblePages.length - 1 && visiblePages[index + 1] > page + 1 && (
                   <span key={`ellipsis-${index}`}>...</span>
                 )}

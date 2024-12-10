@@ -1,19 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Input from '../Input/Input'
 import { Fields } from '../../state/Reservation/enums'
 import { formatDate } from '../../utils'
 import { regexEmail, regexName, regexPhone } from '../Input/constants/regex'
 import { FullReservation } from '../../api/types'
-import { ReservationContext } from '../../state/Reservation'
 
 type Props = {
     onSubmit: (args) => void,
     defaultValues?: Partial<FullReservation>
 }
 
-const Form = ({ onSubmit, defaultValues }:Props) => {
+const Form = ({ onSubmit, defaultValues } : Props) => {
     const today = formatDate(new Date())
-    const state = useContext(ReservationContext)
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       // Previene il comportamento di default del form
@@ -21,7 +19,7 @@ const Form = ({ onSubmit, defaultValues }:Props) => {
       // Crea un oggetto FormData con i dati del form e lo trasforma in un oggetto
       const formData = new FormData(e.currentTarget as HTMLFormElement);
       const values = Object.fromEntries(formData.entries());
-      onSubmit({...values, expId: state?.expId ?? 1});
+      onSubmit({...values});
     }
 
   return (
@@ -86,7 +84,7 @@ const Form = ({ onSubmit, defaultValues }:Props) => {
           />
           <Input type='number'
             label=''
-            defaultValue={state?.expId ?? 1}
+            defaultValue={1}
             name={Fields.EXP_ID}
             hidden
             required

@@ -95,9 +95,10 @@ export const deleteReservation = async (id: number) => {
 }
 
 // API per la modifica di una prenotazione
-export const updateReservation = async (id: number, values: Omit<Reservation, "expId"| "id">) => {
+export const updateReservation = async (id: number, values: Omit<Reservation, "id">[]) => {
     const userId = getUserIdFromLocalStorage()
-    const body = { ...values, userId: userId }
+    const body = { ...values[0], userId: userId }
+    if(body.expId) delete body.expId;
 
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
         method: 'PATCH',
