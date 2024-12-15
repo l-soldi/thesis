@@ -7,11 +7,12 @@ const Navbar = () => {
     const id = getUserIdFromLocalStorage();
     const {pathname: location} = useLocation();
 
-    const routes = useMemo(() => [
+    const routes = useMemo(() => {
+        if (id) return [
         { path: ["/prenota"], href: "/prenota", label: "Prenota" },
         { path: ["/gestisci"], href: "/gestisci", label: "Gestisci" },
-        ...(id ? [{ path: ["/login"], href: "/login", label: "Logout" }] : [])
-    ], [id])
+        { path: ["/login"], href: "/login", label: "Logout" }
+    ]}, [id])
 
     return (
         <nav className="navbar">
@@ -19,7 +20,7 @@ const Navbar = () => {
                 MockExperiences
             </h1>
             <ul className="navbar-menu">
-                {routes.map((route, index) => (
+                {routes?.map((route, index) => (
                     <li key={`route-${index}`} className="navbar-item">
                         <a href={route.href} 
                             className={route.path.includes(location) ? "selected" : ""}
