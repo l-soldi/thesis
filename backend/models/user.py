@@ -21,8 +21,6 @@ class User(db.Model):
 # Aggiunge un nuovo utente al database
     @staticmethod
     def register(name: str, lastname: str, email: str, password: str) -> 'User':
-        if User.user_exists(email):
-            return None
         new_user = User(name=name, lastname=lastname, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()

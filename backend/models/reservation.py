@@ -18,7 +18,7 @@ class Reservation(db.Model):
 
   @staticmethod
   def get_by_user_id(user_id: int) -> list['Reservation']:
-    return Reservation.query.filter_by(user_id=user_id).all()
+    return Reservation.query.filter_by(user_id=user_id).order_by(Reservation.id.desc()).all()
 
   # Restituisce una rappresentazione testuale dell'oggetto
   def to_json(self):

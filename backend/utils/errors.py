@@ -5,5 +5,3 @@ class Errors(Enum):
     USER_ALREADY_EXISTS = "Utente già presente"
     RES_NOT_FOUND = "Prenotazione non trovata"
     GENERAL_ERROR = "Qualcosa è andato storto. Riprova."
-    PERMISSION_DENIED = "Permission denied"
-    UNKNOWN_ERROR = "Unknown error"

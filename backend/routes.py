@@ -17,7 +17,7 @@ def login():
   if user and User.verify_password(user.id, password):
     return jsonify(user.to_json()), 200
   else:
-    return jsonify({"error": Errors.INVALID_EMAIL_OR_PWD}), 401
+    return jsonify({"error": Errors.INVALID_EMAIL_OR_PWD.value}), 401
 
 # Registra l'utente
 @app.route('/api/register', methods=['POST'])
@@ -32,7 +32,7 @@ def register():
   if user is None:
       user = User.register(data.get("name"), data.get("lastname"), data.get("email"), data.get("password"))
   else:
-    return jsonify({"error": Errors.USER_ALREADY_EXISTS}), 400
+    return jsonify({"error": Errors.USER_ALREADY_EXISTS.value}), 400
   return jsonify(user.to_json()), 201
 
 # Recupera la lista di tutte le prenotazioni presenti a DB.
@@ -97,7 +97,7 @@ def delete_reservation(id):
     # Recupera la prenotazione con dato id da DB
     reservation = Reservation.get(id)
     if reservation is None:
-      return jsonify({"error": Errors.RES_NOT_FOUND}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
+      return jsonify({"error": Errors.RES_NOT_FOUND.value}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
 
     ReservationHistory.delete(id)
     return jsonify({"msg":"Prenotazione eliminata"}), 200 # In caso di successo restituisce 200 con un messaggio che indica che la Prenotazione è stata eliminata correttamente.
@@ -105,7 +105,7 @@ def delete_reservation(id):
   except Exception:
     # In caso di errore riporta il DB in uno stato consistente.
     db.session.rollback()
-    return jsonify({"error": Errors.GENERAL_ERROR }),500
+    return jsonify({"error": Errors.GENERAL_ERROR.value }),500
 
 # Dato un identificativo di prenotazione aggiorna le informazioni presenti a DB della stessa, se presente.
 @app.route("/api/reservations/<int:id>", methods=["PATCH"])
@@ -114,7 +114,7 @@ def update_reservation(id):
     # Recupera la prenotazione con dato id da DB
     reservation = Reservation.get(id)
     if reservation is None:
-      return jsonify({"error": Errors.RES_NOT_FOUND}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
+      return jsonify({"error": Errors.RES_NOT_FOUND.value}), 404 # Se la prenotazione non esiste ritorna 404 NOT FOUND
 
     data = request.json
 
@@ -125,7 +125,7 @@ def update_reservation(id):
   except Exception:
     # In caso di errore riporta il DB in uno stato consistente.
     db.session.rollback()
-    return jsonify({"error": Errors.GENERAL_ERROR }),500
+    return jsonify({"error": Errors.GENERAL_ERROR.value }),500
 
 # Recupera la lista di tutte le esperienze presenti a DB
 @app.route("/api/experiences", methods=["GET"])
