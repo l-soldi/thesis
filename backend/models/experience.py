@@ -9,9 +9,9 @@ class Experience(db.Model):
   imageUrl = db.Column(db.String(100), nullable=False)
 
   @staticmethod
-  def get_by_exp_id(exp_id: int):
-    return Experience.query.filter_by(id=exp_id).first()
-  
+  def get(id: int):
+    return Experience.query.filter_by(id=id).first()
+
   @staticmethod
   def get_all():
     return Experience.query.all()

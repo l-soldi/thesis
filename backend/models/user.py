@@ -13,34 +13,31 @@ class User(db.Model):
     def user_exists(email: str) -> bool:
         return db.session.query(User.id).filter_by(email=email).scalar() is not None
 
+# Verifica se la password fornita corrisponde a quella dell'utente
+    @staticmethod
+    def verify_password(id: str, password: str) -> bool:
+        return User.get(id).password == password
+
 # Aggiunge un nuovo utente al database
     @staticmethod
-    def register(name: str, lastname: str, email: str, password: str):
+    def register(name: str, lastname: str, email: str, password: str) -> 'User':
         if User.user_exists(email):
             return None
         new_user = User(name=name, lastname=lastname, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
         return new_user
-    
-    @staticmethod
-    def get_all():
-        return User.query.all()
 
 # Ritorna l'utente con l'id specificato
     @staticmethod
-    def get(user_id: int):
+    def get(user_id: int) -> 'User':
         return User.query.get(user_id)
 
 # Ritorna l'utente con l'email specificata
     @staticmethod
-    def get_by_email(email: str):
+    def get_by_email(email: str) -> 'User':
         return User.query.filter_by(email=email).first()
 
-# Verifica se la password fornita corrisponde a quella dell'utente
-    @staticmethod
-    def check_password(id: str, password: str) -> bool:
-        return User.get(id).password == password
 
 # Restituisce una rappresentazione testuale dell'oggetto
     def to_json(self):
@@ -48,6 +45,5 @@ class User(db.Model):
             "id":self.id,
             "name":self.name,
             "lastname":self.lastname,
-            "email":self.email,
-            "password":self.password
+            "email":self.email
         }

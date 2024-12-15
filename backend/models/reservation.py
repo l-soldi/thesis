@@ -13,11 +13,11 @@ class Reservation(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
   @staticmethod
-  def get_by_id(id: int):
+  def get(id: int) -> 'Reservation' :
     return Reservation.query.filter_by(id=id).first()
 
   @staticmethod
-  def get_by_user_id(user_id: int):
+  def get_by_user_id(user_id: int) -> list['Reservation']:
     return Reservation.query.filter_by(user_id=user_id).all()
 
   # Restituisce una rappresentazione testuale dell'oggetto
