@@ -1,14 +1,15 @@
 import { useLoaderData, useNavigate } from 'react-router-dom'
-import { FullReservationResponse, FullReservation } from '../../api/types'
+import { FullReservationResponse, FullReservation } from '@api/types'
 import Empty from './Empty'
-import Table from '../../components/Table/Table'
+import Table from '@components/Table/Table'
 import { useContext, useMemo, useState } from 'react'
-import { ModalContext } from '../../state/Modal'
-import { ModalTypes } from '../../components/Modal/types'
-import { useApi } from '../../api/hooks/useApi'
-import { deleteReservation, updateReservation } from '../../api/methods'
-import { Modal } from '../../components'
+import { ModalContext } from '@state/Modal'
+import { ModalTypes } from '@components/Modal/types'
+
+import { deleteReservation, updateReservation } from '@api/methods'
+import { Modal } from '@components'
 import './style.css'
+import { useApi } from '@api/hooks/useApi'
 
 const Gestisci = () => {
     const data = useLoaderData() as FullReservationResponse

@@ -1,6 +1,6 @@
 import { createContext, Dispatch, ReactNode, useReducer } from 'react';
 import { reservationReducer } from './reducer';
-import { formatDate } from '../../utils';
+import { formatDate } from '@utils';
 
 interface Reservation {
     id: string;

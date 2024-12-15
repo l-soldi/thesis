@@ -1,6 +1,6 @@
 import  { createContext, ReactNode } from "react";
-import Toast from "../../components/Toast/Toast";
-import useToast from "../../components/hooks/useToast";
+import Toast from "@components/Toast/Toast";
+import useToast from "@components/hooks/useToast";
 
 const initialState = {
   show: false,

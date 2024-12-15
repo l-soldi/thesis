@@ -1,9 +1,9 @@
 import React from 'react'
 import Input from '../Input/Input'
-import { Fields } from '../../state/Reservation/enums'
-import { formatDate } from '../../utils'
+import { Fields } from '@state/Reservation/enums'
+import { formatDate } from '@utils'
 import { regexEmail, regexName, regexPhone } from '../Input/constants/regex'
-import { FullReservation } from '../../api/types'
+import { FullReservation } from '@api/types'
 
 type Props = {
     onSubmit: (args) => void,

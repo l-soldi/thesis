@@ -1,5 +1,5 @@
 import  { createContext, ReactNode } from "react";
-import useModal from "../../components/hooks/useModal";
+import useModal from "@components/hooks/useModal";
 
 const initialState = {
   show: false,

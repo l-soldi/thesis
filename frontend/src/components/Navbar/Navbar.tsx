@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { getUserIdFromLocalStorage } from '../../localStorage/utils';
+import { getUserIdFromLocalStorage } from '@localStorage/utils';
 import { useLocation } from 'react-router-dom';
 import './style.css';
 

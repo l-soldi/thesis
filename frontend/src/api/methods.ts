@@ -1,6 +1,6 @@
-import { getUserIdFromLocalStorage, writeUserIdToLocalStorage } from "../localStorage/utils";
+import { getUserIdFromLocalStorage, writeUserIdToLocalStorage } from "@localStorage/utils";
 import { BASE_URL } from "./endpoint";
-import { Experience, FullReservation, FullReservationResponse, Reservation } from "./types";
+import { Experience, FullReservationResponse, Reservation } from "./types";
 
 // API login
 export const login = async (email: string, password: string) => {

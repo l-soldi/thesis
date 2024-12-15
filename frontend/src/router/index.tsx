@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import { getExperiences, getReservations } from "../api/methods";
-import { Gestisci, ErrorPage, Prenota, Login } from "../pages";
-import { Navbar } from "../components";
+import { getExperiences, getReservations } from "@api/methods";
+import { Gestisci, ErrorPage, Prenota, Login } from "@pages";
+import { Navbar } from "@components";
 
 const NavbarWrapper = () =>{
   return (

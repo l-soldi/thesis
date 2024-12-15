@@ -3,8 +3,8 @@ import { ModalTypes } from './types';
 import BodyEdit from './BodyEdit';
 import BodyDelete from './BodyDelete';
 import './style.css'
-import { ModalContext } from '../../state/Modal';
-import { FullReservation } from '../../api/types';
+import { ModalContext } from '@state/Modal';
+import { FullReservation } from '@api/types';
 
 type Props = {
     type: ModalTypes | null;

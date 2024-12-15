@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useState } from 'react'
-import { Input } from '../../components';
-import { useApi } from '../../api/hooks/useApi';
-import { login, register } from '../../api/methods';
-import { ToastContext } from '../../state/Toast';
-import { Fields } from '../../state/Reservation/enums';
+import { Input } from '@components';
+import { useApi } from '@api/hooks/useApi'
+import { login, register } from '@api/methods';
+import { ToastContext } from '@state/Toast';
+import { Fields } from '@state/Reservation/enums';
 import './style.css'
-import { writeUserIdToLocalStorage } from '../../localStorage/utils';
+import { writeUserIdToLocalStorage } from '@localStorage/utils';
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
