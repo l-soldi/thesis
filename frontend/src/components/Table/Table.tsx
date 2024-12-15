@@ -11,6 +11,8 @@ interface TableProps {
 type Props = TableProps & PaginationProps
 
 const Table = ({ rows, columns, onEdit, onDelete, ...pagination }: Props) => {
+
+    if(!rows.length) return <p>Non ci sono dati</p>
     return (
         <>
             <table>

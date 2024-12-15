@@ -1,11 +1,24 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import { getExperiences, getReservations } from "../api/methods";
-import Login from "../pages/Login";
-import ErrorPage from "../pages/Error";
-import Prenota from "../pages/Prenota";
-import Gestisci from "../pages/Gestisci";
+import { Gestisci, ErrorPage, Prenota, Login } from "../pages";
+import { Navbar } from "../components";
+
+const NavbarWrapper = () =>{
+  return (
+  <>
+      <Navbar/>
+      <main>
+        <Outlet/>
+      </main>
+  </>
+  )
+};
 
 export const router = createBrowserRouter([
+  {
+    path: "/", 
+    element: <NavbarWrapper/>,
+    children:[
     {
       path: "/",
       element: <Login />,
@@ -34,4 +47,4 @@ export const router = createBrowserRouter([
         }, // Carica le prenotazioni al caricamento della pagina
       errorElement: <ErrorPage />,
     },
-  ]);
+  ]}]);

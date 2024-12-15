@@ -12,10 +12,12 @@ export type PaginationProps = {
 const noop = () => {}
 const pagesOptions = [2, 5, 10, 20, 50]
 
-const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItemsPerPageChange = noop, totalItems=10 } : PaginationProps) => {
+const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItemsPerPageChange = noop, totalItems=0 } : PaginationProps) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     const pages = useMemo(() => [...Array(totalPages)].map((_, i) => i + 1), [totalPages]);
+
+    if(!totalItems || totalPages === 0) return null
 
   return (
     <footer>

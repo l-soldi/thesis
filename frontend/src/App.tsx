@@ -1,6 +1,5 @@
 import './App.css'
 import { RouterProvider } from "react-router-dom";
-import Navbar from './components/Navbar/Navbar'
 import { router } from './router';
 import Providers from './state/Providers';
 import { deleteUserIdFromLocalStorage } from './localStorage/utils';
@@ -14,10 +13,7 @@ function App() {
 
   return (
     <Providers>
-      <Navbar />
-      <main>
-        <RouterProvider router={router} />
-      </main>
+      <RouterProvider router={router} />
     </Providers>
   )
 }

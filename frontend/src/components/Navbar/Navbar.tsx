@@ -1,23 +1,17 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { getUserIdFromLocalStorage } from '../../localStorage/utils';
+import { useLocation } from 'react-router-dom';
 import './style.css';
 
 const Navbar = () => {
-    // TODO: fix routes
-    const location = window.location.pathname;
     const id = getUserIdFromLocalStorage();
+    const {pathname: location} = useLocation();
 
     const routes = useMemo(() => [
         { path: ["/prenota"], href: "/prenota", label: "Prenota" },
         { path: ["/gestisci"], href: "/gestisci", label: "Gestisci" },
         ...(id ? [{ path: ["/login"], href: "/login", label: "Logout" }] : [])
     ], [id])
-
-    useEffect(() => {
-        if (!id && location !== '/login') {
-            window.location.href = '/login';
-        }
-    }, [id, location]);
 
     return (
         <nav className="navbar">

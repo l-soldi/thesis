@@ -1,17 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { Input } from '../../components';
 import { useApi } from '../../api/hooks/useApi';
 import { login, register } from '../../api/methods';
 import { ToastContext } from '../../state/Toast';
 import { Fields } from '../../state/Reservation/enums';
 import './style.css'
+import { writeUserIdToLocalStorage } from '../../localStorage/utils';
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
     const { showErrorToast } = useContext(ToastContext);
 
-    const loginCta = useApi((data) => login(...data), '/prenota', true, false)
-    const registerCta = useApi((data) => register(...data), '/prenota', true, false)
+    const onSuccess = useCallback((userId: string) => {
+        writeUserIdToLocalStorage(userId)
+    }, [])
+
+    const loginCta = useApi((data) => login(...data), '/prenota', true, false, onSuccess)
+    const registerCta = useApi((data) => register(...data), '/prenota', true, false, onSuccess)
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

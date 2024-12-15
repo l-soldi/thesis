@@ -1,16 +1,17 @@
 import { useLoaderData, useNavigate } from 'react-router-dom'
-import { FullReservation } from '../../../api/types'
+import { FullReservationResponse, FullReservation } from '../../api/types'
 import Empty from './Empty'
-import Table from '../../../components/Table/Table'
-import { useContext, useState } from 'react'
-import { ModalContext } from '../../../state/Modal'
-import { ModalTypes } from '../../../components/Modal/types'
-import { useApi } from '../../../api/hooks/useApi'
-import { deleteReservation, updateReservation } from '../../../api/methods'
-import { Modal } from '../../../components'
+import Table from '../../components/Table/Table'
+import { useContext, useMemo, useState } from 'react'
+import { ModalContext } from '../../state/Modal'
+import { ModalTypes } from '../../components/Modal/types'
+import { useApi } from '../../api/hooks/useApi'
+import { deleteReservation, updateReservation } from '../../api/methods'
+import { Modal } from '../../components'
+import './style.css'
 
-const List = () => {
-    const data = useLoaderData() as FullReservation
+const Gestisci = () => {
+    const data = useLoaderData() as FullReservationResponse
     const navigate = useNavigate()
 
     const [defaultValues, setDefaultValues] = useState<FullReservation | null>(null)
@@ -46,13 +47,16 @@ const List = () => {
         setItemsPerPage(newItemsPerPage)
         navigate(`/gestisci?page=${page}&itemsPerPage=${newItemsPerPage}`, { replace: true });
     }
+    const isEmpty = useMemo(() => !data || !data.items.length, [data])
 
     return (<>
     <Modal type={modalType} cta={cta} defaultValues={defaultValues}/>
         {
-            !data
+            isEmpty
                 ? <Empty />
-                : <Table
+                : <>
+                <h2>Le tue prenotazioni </h2>
+                <Table
                     rows={data.items.map(({ name, lastname, email, experience: { title }, date, peopleNum, totalPrice }) => [name, lastname, email, title, date, peopleNum.toString(), totalPrice.toString()])}
                     columns={columns}
                     onEdit={(index) => {handleCTA(ModalTypes.EDIT, data.items[index])}}
@@ -63,9 +67,10 @@ const List = () => {
                     onItemsPerPageChange={onItemsPerPageChange}
                     totalItems={data.totalItems}
                 />
+                </>
         }
     </>
   )
 }
 
-export default List
+export default Gestisci

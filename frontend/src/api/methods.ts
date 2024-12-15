@@ -1,6 +1,6 @@
 import { getUserIdFromLocalStorage, writeUserIdToLocalStorage } from "../localStorage/utils";
 import { BASE_URL } from "./endpoint";
-import { Experience, FullReservation, Reservation } from "./types";
+import { Experience, FullReservation, FullReservationResponse, Reservation } from "./types";
 
 // API login
 export const login = async (email: string, password: string) => {
@@ -18,7 +18,7 @@ export const login = async (email: string, password: string) => {
     }
 
     writeUserIdToLocalStorage(jsonResp.id)
-    return jsonResp
+    return jsonResp.id
 }
 
 // API registrazione
@@ -38,7 +38,7 @@ export const register = async (name:string, lastname: string, email: string, pas
     }
 
     writeUserIdToLocalStorage(jsonResp.id)
-    return jsonResp
+    return jsonResp.id
 }
 
 // API per la creazione di una prenotazione
@@ -63,7 +63,7 @@ export const createReservations = async (values: Omit<Reservation, "id">[]) => {
 }
 
 // API per ottenere tutte le prenotazioni
-export const getReservations = async (page = 1, perPage = 5)  : Promise<FullReservation[]> => {
+export const getReservations = async (page = 1, perPage = 5)  : Promise<FullReservationResponse[]> => {
     const userId = getUserIdFromLocalStorage()
     const body = { userId: userId }
 
@@ -98,7 +98,8 @@ export const deleteReservation = async (id: number) => {
 export const updateReservation = async (id: number, values: Omit<Reservation, "id">[]) => {
     const userId = getUserIdFromLocalStorage()
     const body = { ...values[0], userId: userId }
-    if(body.expId) delete body.expId;
+
+    if(body?.expId) delete body.expId;
 
     const response = await fetch(`${BASE_URL}/reservations/${id}`, {
         method: 'PATCH',

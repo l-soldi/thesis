@@ -1,12 +1,10 @@
-import  { ReactNode } from 'react'
-import { UserProvider } from './User'
+import { ReactNode } from 'react'
 import { ReservationProvider } from './Reservation'
 import { ModalProvider } from './Modal'
 import { ToastProvider } from './Toast'
 
 const Providers = ({ children } : { children: ReactNode }) => {
   return (
-    <UserProvider>
       <ReservationProvider>
         <ModalProvider>
           <ToastProvider>
@@ -14,7 +12,6 @@ const Providers = ({ children } : { children: ReactNode }) => {
           </ToastProvider>
         </ModalProvider>
       </ReservationProvider>
-    </UserProvider>
   )
 }
 

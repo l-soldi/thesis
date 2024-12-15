@@ -8,7 +8,7 @@ import { FullReservation } from '../../api/types';
 
 type Props = {
     type: ModalTypes | null;
-    cta?: () => Promise<any>;
+    cta?: (...args) => Promise<any>;
     defaultValues?: Partial<FullReservation>
 }
 

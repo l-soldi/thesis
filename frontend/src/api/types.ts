@@ -1,7 +1,9 @@
-export type FullReservation = {
+export type FullReservationResponse = {
     items: Array<Reservation & { experience: Experience, totalPrice: number }>
     totalItems: number
 }
+
+export type FullReservation = Reservation & { experience: Experience, totalPrice: number }
 
 export type Reservation = {
     id: number;
