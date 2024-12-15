@@ -1,17 +1,3 @@
-.container.with-form {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--white);
-    border: 2px solid var(--burgundy);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 4px rgba(var(--burgundy), 0.1);
-    margin: var(--spacing-lg);
-
-    @media screen and (min-width: 768px) {
-        flex-direction: row;
-      }
-}
-
 .side-right {
     margin-top: var(--spacing-md);
     @media screen and (min-width: 768px) {
@@ -29,14 +15,6 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-    }
-
-    &.no-edit {
-        color: var(--brown);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-xs);
-        padding: var(--spacing-md);
     }
 
     h3 {

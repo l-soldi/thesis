@@ -8,7 +8,6 @@ import { ModalTypes } from '@components/Modal/types'
 
 import { deleteReservation, updateReservation } from '@api/methods'
 import { Modal } from '@components'
-import './style.css'
 import { useApi } from '@api/hooks/useApi'
 
 const Gestisci = () => {
