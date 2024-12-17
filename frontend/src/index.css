@@ -2,13 +2,13 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 16px;
 
   --border-radius: 6px;
   --border-radius-sm: 4px;
 
   /* colori */
   --white: #FFFFFF;
-  --light: #F2D8BA;
   --burgundy: #7c2c3a;
   --brown: #342f2e;
   --teal: #146461;
