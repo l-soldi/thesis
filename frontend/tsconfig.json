@@ -18,5 +18,9 @@
       "@state/*": ["state/*"],
       "@utils/*": ["utils/*"],
    }
-  }
+  },
+    "exclude": [
+      "./src/**/__tests__/**",
+      "./src/__mocks__/**"
+    ]
 }

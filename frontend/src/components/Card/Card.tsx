@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import './style.css';
 
 interface CardProps {
@@ -12,7 +12,7 @@ interface CardProps {
 
 const Card = ({ title, description, imageUrl, price, handleClick, isChosen } : CardProps) => {
     return (
-        <div className="card" onClick={handleClick}>
+        <div className="card">
             <img src={imageUrl} alt={title} className="card-image" />
             <div className='card-content'>
                 <h2 className="card-title">{title}</h2>
