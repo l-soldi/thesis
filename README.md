@@ -66,3 +66,7 @@ Dopo aver clonato la repo:
 
 4. Utenze utilizzabili per testare
 email@email.com - password
+
+5. Testing
+BE: `pytest test.py`
+FE: `yarn test`
