@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { ModalTypes } from './types';
 import BodyEdit from './BodyEdit';
 import BodyDelete from './BodyDelete';

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import './style.css'
 
 export type PaginationProps = {
@@ -22,7 +22,7 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
   return (
     <footer>
       <div className='items-per-page'>
-        <label htmlFor="itemsPerPage">
+        <label htmlFor="itemsPerPage" >
           Elementi per pagina:
         </label>
         <select
@@ -38,7 +38,7 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
         </select>
       </div>
 
-      <div className="pagination">
+      <div className="pagination" >
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
@@ -60,13 +60,14 @@ const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItem
                 <button
                   onClick={() => onPageChange(page)}
                   className={currentPage === page ? "" : "secondary"}
+                  key={page}
                 >
                   {page}
                 </button>
 
                 {/* Aggiungi ellissi dove necessario */}
                 {index < visiblePages.length - 1 && visiblePages[index + 1] > page + 1 && (
-                  <span key={`ellipsis-${index}`}>...</span>
+                  <span key={`ellipsis-${page}`}>...</span>
                 )}
               </>
     ))}

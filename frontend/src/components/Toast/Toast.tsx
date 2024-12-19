@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { ToastContext } from '@state/Toast';
 import './style.css';
 import { ToastVariants } from './enum';

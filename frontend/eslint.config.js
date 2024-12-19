@@ -25,4 +25,20 @@ export default tseslint.config(
       ],
     },
   },
+  {settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@api', './src/api'],
+          ['@components', './src/components'],
+          ['@localStorage', './src/localStorage'],
+          ['@pages', './src/pages'],
+          ['@state', './src/state'],
+          ['@utils', './src/utils'],
+          ['src', './src'],
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },}
 )

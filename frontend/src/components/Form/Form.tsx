@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../Input/Input'
 import { Fields } from '@state/Reservation/enums'
-import { formatDate } from '@utils'
+import { formatDate } from '@utils/index'
 import { regexEmail, regexName, regexPhone } from '@utils/regex'
 import { FullReservation } from '@api/types'
 
@@ -23,7 +23,7 @@ const Form = ({ onSubmit, defaultValues } : Props) => {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} aria-label='form'>
         <Input type='date'
           label='Giorno'
           defaultValue={defaultValues?.date ?? today}

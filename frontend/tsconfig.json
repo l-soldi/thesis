@@ -17,6 +17,7 @@
       "@pages/*": ["pages/*"],
       "@state/*": ["state/*"],
       "@utils/*": ["utils/*"],
+      "src/*": ["src/*"]
    }
   },
     "exclude": [

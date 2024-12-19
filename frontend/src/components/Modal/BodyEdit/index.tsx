@@ -1,3 +1,4 @@
+import React from 'react';
 import { ModalProps } from '../types';
 import Form from '../../Form/Form';
 import { FullReservation } from '@api/types';
