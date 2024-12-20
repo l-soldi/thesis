@@ -4,8 +4,8 @@ import { useApi } from '@api/hooks/useApi'
 import { login, register } from '@api/methods';
 import { ToastContext } from '@state/Toast';
 import { Fields } from '@state/Reservation/enums';
-import './style.css'
 import { writeUserIdToLocalStorage } from '@localStorage/utils';
+import './style.css'
 
 const Login = () => {
     const [isRegister, setIsRegister] = useState(false);
@@ -50,7 +50,7 @@ const Login = () => {
                     <button  type="submit" id="maincta">{isRegister ? "Registrati" : "Login"}</button>
                     {!isRegister && <>
                         <p> Non hai un account? </p>
-                        <button className='secondary' id="register" onClick={()=> {setIsRegister(true)}}> Registrati coi dati inseriti </button>
+                        <button className='secondary' id="register" onClick={()=> {setIsRegister(true)}}> Registrati </button>
                     </>
                     }
                 </span>
