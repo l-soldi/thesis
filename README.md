@@ -68,5 +68,7 @@ Dopo aver clonato la repo:
 email@email.com - password
 
 5. Testing
-BE: `pytest test.py`
-FE: `yarn test`
+BE: `pytest tests.py`
+FE: `yarn test` esegue i test unitari e di integrazione
+FE: `yarn cy:r` esegue i test E2E in modalità headless, ma è necessario eseguire `yarn vite` parallelamente
+FE: `yarn cy:o` apre la schermata di cypress, ma è necessario eseguire `yarn vite` parallelamente
