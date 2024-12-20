@@ -19,7 +19,7 @@ const Card = ({ title, description, imageUrl, price, handleClick, isChosen } : C
                 <p className="card-description">{description}</p>
                 <div className='card-foot'>
                     <p className="card-price">€ {price.toFixed(2)}</p>
-                    <button onClick={handleClick} disabled={isChosen}>
+                    <button id="select-card" onClick={handleClick} disabled={isChosen}>
                         {isChosen ? 'Selezionato' : 'Scegli'}
                     </button>
                 </div>

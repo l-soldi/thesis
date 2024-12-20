@@ -10,7 +10,7 @@ export type PaginationProps = {
 }
 
 const noop = () => {}
-const pagesOptions = [2, 5, 10, 20, 50]
+const pagesOptions = [5, 10, 20, 50]
 
 const Pagination = ({ currentPage=1, itemsPerPage=5, onPageChange = noop, onItemsPerPageChange = noop, totalItems=0 } : PaginationProps) => {
     const totalPages = Math.ceil(totalItems / itemsPerPage);

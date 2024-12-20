@@ -90,7 +90,7 @@ const Form = ({ onSubmit, defaultValues } : Props) => {
             required
           />
         <span>
-            <button> Conferma </button>
+            <button type="submit"> Conferma </button>
         </span>
     </form>
   )

@@ -1,0 +1,30 @@
+[
+  {
+      "description": "Un'esperienza emozionante di concerto rock con alcune delle migliori band rock. Goditi performance elettrizzanti, spettacoli di luci mozzafiato e una notte indimenticabile di musica e intrattenimento.",
+      "id": 1,
+      "imageUrl": "https://picsum.photos/id/158/200/300",
+      "price": 100.0,
+      "title": "Concerto Rock"
+  },
+  {
+      "description": "Intraprendi un'avventura di escursionismo esaltante attraverso paesaggi mozzafiato. Perfetto per gli appassionati di attivit\u00e0 all'aperto e gli amanti della natura. Vivi l'emozione di conquistare sentieri impegnativi e ammirare viste spettacolari.",
+      "id": 2,
+      "imageUrl": "https://picsum.photos/id/177/200/300",
+      "price": 150.0,
+      "title": "Escursione tra le Alpi"
+  },
+  {
+      "description": "Immergiti nella bellezza serena del deserto con una cena gourmet sotto le stelle. Goditi un delizioso pasto preparato da chef di alto livello, circondato dal paesaggio tranquillo e maestoso del deserto.",
+      "id": 3,
+      "imageUrl": "https://picsum.photos/id/184/200/300",
+      "price": 200.0,
+      "title": "Cena nel Deserto"
+  },
+  {
+      "description": "Fai un salto indietro nel tempo con una visita a un vecchio castello. Esplora antiche sale, scopri segreti nascosti e ammira l'architettura. Scopri la ricca storia e le leggende che circondano questa magnifica struttura.",
+      "id": 4,
+      "imageUrl": "https://picsum.photos/id/193/200/300",
+      "price": 250.0,
+      "title": "Visita al Vecchio Castello"
+  }
+]

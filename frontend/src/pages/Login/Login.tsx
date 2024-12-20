@@ -47,10 +47,12 @@ const Login = () => {
                 <Input label="Password" name={Fields.PASSWORD} type="password" defaultValue="password" required />
                 <span className="actions">
                     {isRegister && <button className='secondary' onClick={() => setIsRegister(false)}> Indietro </button>}
-                    <button  type="submit" id="maincta">{isRegister ? "Registrati" : "Login"}</button>
+                    <button  type="submit" id="maincta">{isRegister? "Registrati" : "Login"}</button>
                     {!isRegister && <>
                         <p> Non hai un account? </p>
-                        <button className='secondary' id="register" onClick={()=> {setIsRegister(true)}}> Registrati </button>
+                        <button className='secondary' type='button' id="register" onClick={()=> {setIsRegister(true)}}> 
+                            Registrati
+                        </button>
                     </>
                     }
                 </span>

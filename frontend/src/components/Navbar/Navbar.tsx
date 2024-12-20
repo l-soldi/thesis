@@ -1,12 +1,13 @@
 import React from 'react';
 import { useMemo } from 'react';
 import { getUserIdFromLocalStorage } from '@localStorage/utils';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './style.css';
 
 const Navbar = () => {
     const id = getUserIdFromLocalStorage();
     const {pathname: location} = useLocation();
+    const navigate = useNavigate();
 
     const routes = useMemo(() => {
         if (id) return [
@@ -14,6 +15,11 @@ const Navbar = () => {
         { path: ["/gestisci"], href: "/gestisci", label: "Gestisci" },
         { path: ["/login"], href: "/login", label: "Logout" }
     ]}, [id])
+
+    if(!id) {
+        navigate('/login');
+    }
+
 
     return (
         <nav className="navbar">

@@ -8,7 +8,7 @@ const Empty = () => {
     }
 
   return (<>
-    <h3>Non hai prenotazioni</h3>
+    <h2>Non hai prenotazioni</h2>
     <button onClick={handleClick}>Prenota subito</button>
   </>
   )
