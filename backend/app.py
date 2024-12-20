@@ -12,12 +12,24 @@ def create_app():
 # Istanzia e ritorna SQLAlchemy, ORM utilizzato per interfacciarsi con un db SQLite
 def create_db(app):
   # Configura l'app Flask per interfacciarsi con l'ORM SQLAlchemy
-  app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///reservations.db"
-  app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-  app.config["SQLALCHEMY_BINDS"] = {
-    "experiences": "sqlite:///experiences.db",
-    "users": "sqlite:///users.db",
-  }
+  # Se testing è true utilizza delle istanze dei file di test in modo da avere dei dati da poter usare per i test delle chiamate
+  # senza andare ad intaccare i dati di "prod"
+  if app.testing:
+    # Test
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test_reservations.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_BINDS"] = {
+      "experiences": "sqlite:///test_experiences.db",
+      "users": "sqlite:///test_users.db",
+    }
+  else: 
+    # Prod
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///reservations.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_BINDS"] = {
+      "experiences": "sqlite:///experiences.db",
+      "users": "sqlite:///users.db",
+    }
   return SQLAlchemy(app)
 
 # Inizializzazione
