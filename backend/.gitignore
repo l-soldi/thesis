@@ -13,6 +13,7 @@ pip-selfcheck.json
 .idea/
 *.iml
 *.pyc
+.DS_Store
 
 # Environment variables
 .env
@@ -20,6 +21,10 @@ pip-selfcheck.json
 # Database
 reservations.db
 experiences.db
+users.db
+test_reservations.db
+test_experiences.db
+test_users.db
 
 # Compiled Python files
 *.pyc
